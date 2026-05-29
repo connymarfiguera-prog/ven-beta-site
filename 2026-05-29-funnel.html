@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VEN Beta — Funnel ejecutivo · 29/05/2026</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 28px 32px 48px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f4f1;
+      color: #1a1a1a;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* ── Header ── */
+    .header { display: flex; align-items: center; gap: 10px; margin-bottom: 28px; flex-wrap: wrap; }
+    .header h1 { font-size: 20px; font-weight: 600; margin: 0; }
+    .badge {
+      font-size: 11px; font-weight: 500;
+      background: #FEF3CD; color: #856404;
+      padding: 3px 11px; border-radius: 20px;
+      border: 0.5px solid #FECB53;
+    }
+    .date { font-size: 12px; color: #9e9d98; margin-left: auto; }
+
+    /* ── Section label ── */
+    .section-label {
+      font-size: 10.5px; font-weight: 600; color: #9e9d98;
+      letter-spacing: 0.09em; text-transform: uppercase;
+      margin: 28px 0 10px;
+    }
+
+    /* ── KPI tiles ── */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+    }
+    .kpi {
+      background: #fff; border-radius: 10px;
+      padding: 16px 18px; border: 0.5px solid #e5e3de;
+    }
+    .kpi-label { font-size: 11px; color: #73726c; margin-bottom: 8px; }
+    .kpi-val { font-size: 28px; font-weight: 600; line-height: 1; color: #1a1a1a; }
+    .kpi-sub { font-size: 11px; color: #9e9d98; margin-top: 5px; }
+    .kpi-sub.good { color: #1D9E75; font-weight: 500; }
+    .kpi-sub.bad  { color: #C0392B; font-weight: 500; }
+    .kpi-sub.nd   { color: #b5b3ae; font-style: italic; }
+
+    /* ── Chart card ── */
+    .card {
+      background: #fff; border-radius: 10px;
+      padding: 20px; border: 0.5px solid #e5e3de;
+    }
+    .card-title { font-size: 12px; font-weight: 500; color: #73726c; margin-bottom: 16px; }
+    .chart-inner { position: relative; width: 100%; }
+
+    /* ── Two columns ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+    /* ── Table ── */
+    .table-wrap {
+      background: #fff; border-radius: 10px;
+      border: 0.5px solid #e5e3de; overflow: hidden;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    thead { background: #f5f4f1; }
+    th {
+      font-size: 11px; font-weight: 500; color: #73726c;
+      padding: 10px 16px; text-align: left;
+      border-bottom: 0.5px solid #e5e3de;
+    }
+    td { padding: 12px 16px; border-bottom: 0.5px solid #f0efeb; vertical-align: middle; }
+    tr:last-child td { border-bottom: none; }
+    td:first-child { color: #1a1a1a; }
+    td:not(:first-child) { color: #1a1a1a; font-weight: 500; }
+    .pill {
+      display: inline-block; font-size: 11px; font-weight: 600;
+      padding: 3px 10px; border-radius: 20px;
+    }
+    .good  { background: #D1F5E8; color: #0D6E4F; }
+    .warn  { background: #FEF3CD; color: #856404; }
+    .bad   { background: #FDDEDE; color: #9B1515; }
+    .nd    { background: #f0efeb; color: #73726c; }
+
+    /* ── Insight grid ── */
+    .insight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .insight-card {
+      background: #fff; border-radius: 10px;
+      padding: 16px 18px; border: 0.5px solid #e5e3de;
+    }
+    .insight-card h3 { font-size: 13px; font-weight: 600; margin: 0 0 6px; }
+    .insight-card p { font-size: 12px; color: #73726c; margin: 0; line-height: 1.65; }
+
+    /* ── Alert ── */
+    .alert {
+      background: #FEF3CD; border-radius: 10px;
+      padding: 14px 18px; margin-top: 10px;
+      border: 0.5px solid #FECB53;
+    }
+    .alert p { font-size: 12px; color: #7A5900; margin: 0; line-height: 1.65; }
+
+    /* ── Footer note ── */
+    .data-note {
+      font-size: 11px; color: #b5b3ae; margin-top: 24px;
+      padding-top: 14px; border-top: 0.5px solid #e5e3de;
+    }
+
+    /* ── Funnel annotation ── */
+    .funnel-convs {
+      display: flex; justify-content: space-around;
+      margin-top: 8px; flex-wrap: wrap; gap: 6px;
+    }
+    .funnel-conv {
+      font-size: 11px; color: #9e9d98;
+      display: flex; flex-direction: column; align-items: center; gap: 2px;
+    }
+    .funnel-conv strong { color: #1a1a1a; font-size: 13px; }
+
+    /* ── Plateau annotation ── */
+    .plateau-note {
+      font-size: 11px; color: #C0392B; margin-top: 8px;
+      padding: 6px 10px; background: #FFF0EF; border-radius: 6px;
+      border-left: 3px solid #e24b4a;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 16px; }
+      .two-col, .insight-grid { grid-template-columns: 1fr; }
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+      .date { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ HEADER ══════════ -->
+<div class="header">
+  <h1>VEN Beta — Funnel ejecutivo</h1>
+  <span class="badge">Beta activa · Día 11</span>
+  <span class="date">Datos al 27/05/2026 · Amplitude + Search Console</span>
+</div>
+
+<!-- ══════════ KPIs ══════════ -->
+<div class="section-label">Resumen del período · desde lanzamiento Beta 19/05/2026</div>
+<div class="kpi-grid">
+  <div class="kpi">
+    <div class="kpi-label">Clics landing</div>
+    <div class="kpi-val">130</div>
+    <div class="kpi-sub">Search Console · 3 meses</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">Impresiones</div>
+    <div class="kpi-val">878</div>
+    <div class="kpi-sub">CTR 14.8% · pos. 2.4</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">Cuentas VEN creadas</div>
+    <div class="kpi-val">33</div>
+    <div class="kpi-sub">~27% conv. de clics</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">ONB completado</div>
+    <div class="kpi-val">26</div>
+    <div class="kpi-sub good">78.8% de cuentas</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">Con evento de valor</div>
+    <div class="kpi-val">13+</div>
+    <div class="kpi-sub">≥1 módulo activo</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">Retención D1</div>
+    <div class="kpi-val">13%</div>
+    <div class="kpi-sub bad">4 / 30 elegibles</div>
+  </div>
+</div>
+
+<!-- ══════════ FUNNEL ══════════ -->
+<div class="section-label">Funnel de conversión — acumulado</div>
+<div class="card">
+  <div class="chart-inner" style="height:260px">
+    <canvas id="funnelChart" aria-label="Funnel VEN Beta: clics landing → cuentas → onboarding → valor"></canvas>
+  </div>
+  <div class="funnel-convs" style="margin-top:14px">
+    <div class="funnel-conv"><strong>~121</strong><span>Clics Beta</span></div>
+    <div class="funnel-conv" style="color:#3266ad">→ 27%</div>
+    <div class="funnel-conv"><strong>33</strong><span>Cuentas</span></div>
+    <div class="funnel-conv" style="color:#1D9E75">→ 90.9%</div>
+    <div class="funnel-conv"><strong>30</strong><span>ONB iniciado</span></div>
+    <div class="funnel-conv" style="color:#1D9E75">→ 86.7%</div>
+    <div class="funnel-conv"><strong>26</strong><span>ONB completo</span></div>
+    <div class="funnel-conv" style="color:#EF9F27">→ 50%</div>
+    <div class="funnel-conv"><strong>13+</strong><span>Evento valor</span></div>
+  </div>
+</div>
+
+<!-- ══════════ DAILY + RETENTION ══════════ -->
+<div class="two-col" style="margin-top:10px">
+
+  <div>
+    <div class="section-label">Registros por día</div>
+    <div class="card">
+      <div class="chart-inner" style="height:200px">
+        <canvas id="dailyChart" aria-label="Cuentas VEN creadas por día: pico 21/05 con 9 cuentas, plateau desde 26/05"></canvas>
+      </div>
+      <div class="plateau-note" style="margin-top:10px">
+        ⚠️ 0 registros el 26, 27/05 (lunes y martes) — pool de invitaciones agotado
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="section-label">Retención del cohort Beta (D1–D8)</div>
+    <div class="card">
+      <div class="chart-inner" style="height:200px">
+        <canvas id="retentionChart" aria-label="Retención D1 13.3%, baja en D3-D4 por fin de semana"></canvas>
+      </div>
+      <div style="font-size:11px;color:#9e9d98;margin-top:10px">
+        D3/D4 = 0% coincide con fin de semana 24–25/05. D5/D6 muestran señal de regreso.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════ TABLA CONVERSIÓN ══════════ -->
+<div class="section-label">Conversión detallada por etapa</div>
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Etapa</th>
+        <th>Volumen</th>
+        <th>Conv. vs etapa anterior</th>
+        <th>Fuente</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Clics landing (orgánico Google)</td>
+        <td>~121 Beta / 130 total</td>
+        <td><span class="pill nd">Base</span></td>
+        <td style="color:#73726c;font-weight:400">Search Console</td>
+      </tr>
+      <tr>
+        <td>Clics en CTA</td>
+        <td style="color:#b5b3ae;font-style:italic;font-weight:400">Sin dato</td>
+        <td><span class="pill nd">N/D — sin GA4</span></td>
+        <td style="color:#b5b3ae;font-weight:400">GA4 pendiente</td>
+      </tr>
+      <tr>
+        <td>Cuentas VEN creadas <code style="font-size:10px;color:#73726c">ac-account-created</code></td>
+        <td>33</td>
+        <td><span class="pill warn">~27% de clics</span></td>
+        <td style="color:#73726c;font-weight:400">Amplitude</td>
+      </tr>
+      <tr>
+        <td>Onboarding iniciado <code style="font-size:10px;color:#73726c">ac-onboarding-started</code></td>
+        <td>30</td>
+        <td><span class="pill good">90.9%</span></td>
+        <td style="color:#73726c;font-weight:400">Amplitude</td>
+      </tr>
+      <tr>
+        <td>Onboarding completado <code style="font-size:10px;color:#73726c">ac-onboarding-finished</code></td>
+        <td>26</td>
+        <td><span class="pill good">86.7%</span></td>
+        <td style="color:#73726c;font-weight:400">Amplitude</td>
+      </tr>
+      <tr>
+        <td>Con ≥1 evento de valor</td>
+        <td>13+</td>
+        <td><span class="pill warn">~50% de ONB</span></td>
+        <td style="color:#73726c;font-weight:400">Amplitude</td>
+      </tr>
+      <tr>
+        <td>Retención D1 (volvieron al día siguiente)</td>
+        <td>4 / 30</td>
+        <td><span class="pill bad">13.3%</span></td>
+        <td style="color:#73726c;font-weight:400">Amplitude</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════ ADOPCIÓN POR MÓDULO ══════════ -->
+<div class="two-col" style="margin-top:10px">
+  <div>
+    <div class="section-label">Adopción por módulo — usuarios únicos</div>
+    <div class="card">
+      <div class="chart-inner" style="height:200px">
+        <canvas id="pevChart" aria-label="Usuarios únicos con evento de valor: contacto 13, ítem 8, banco 6, factura 3"></canvas>
+      </div>
+      <div style="font-size:11px;color:#9e9d98;margin-top:10px">
+        Usuarios distintos que realizaron al menos 1 evento de valor por módulo (pueden solaparse).
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="section-label">Top queries orgánicas (Search Console)</div>
+    <div class="card">
+      <div class="chart-inner" style="height:200px">
+        <canvas id="queriesChart" aria-label="Top queries: alegra 81 clics, alegra venezuela 16, alegra sistema contable 8"></canvas>
+      </div>
+      <div style="font-size:11px;color:#9e9d98;margin-top:10px">
+        68 queries distintas generaron tráfico. La marca "alegra" concentra 62% de los clics.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ INSIGHTS ══════════ -->
+<div class="section-label">Análisis y próximos pasos</div>
+<div class="insight-grid">
+  <div class="insight-card">
+    <h3>⚠️ Plateau de registros</h3>
+    <p>0 cuentas nuevas el 26 y 27/05 (días hábiles). El pool inicial de invitaciones se agotó. <strong>Acción:</strong> activar nueva ola de invitaciones y abrir canales adicionales de tráfico.</p>
+  </div>
+  <div class="insight-card">
+    <h3>🐛 Bugs reportados (21/05)</h3>
+    <p><strong>Income:</strong> "No me permite poner mi factura como pagada, me dice que es un monto mayor." → Issue en Linear.<br>
+    <strong>Banks:</strong> "El saldo de mi banco cambia el valor al cargarlo." → Issue en Linear.</p>
+  </div>
+  <div class="insight-card">
+    <h3>👥 Entrevistas con usuarios</h3>
+    <p>Solo 1 respuesta real al survey G&S de 33 usuarios. Pendiente: contacto directo con el cohort para entender dolores, fricciones en onboarding y expectativas del producto.</p>
+  </div>
+  <div class="insight-card">
+    <h3>📚 Market education</h3>
+    <p>Priorizar contenido sobre gestión administrativa en Venezuela (USD/Bs, ventas, inventario). Aclarar que SENIAT / facturación fiscal aún no está disponible en esta versión.</p>
+  </div>
+</div>
+<div class="alert">
+  <p>📊 <strong>Dato faltante clave:</strong> no hay GA4 conectado a alegra.com/venezuela/ — imposible medir clics en CTA, sesiones reales ni desglose de canales (orgánico vs directo vs pago vs referral). Conectar GA4 es el paso más urgente para completar el top funnel que pide el equipo.</p>
+</div>
+
+<div class="data-note">
+  Fuentes: Amplitude · ProjectId 496026 · Cohort VEN: appVersion = VEN o venezuela, excluye @alegra.com, desde 19/05/2026 ·
+  Eventos: ac-account-created (adquisición), ac-onboarding-started (entrada), ac-onboarding-finished (activación) ·
+  Google Search Console: página /venezuela/ + país Venezuela · Retención: método n-day, startEvent = ac-account-created, returnEvent = _active ·
+  Datos al 27/05/2026 · 28–29/05 pendientes de actualizar.
+</div>
+
+<!-- ══════════ CHARTS JS ══════════ -->
+<script>
+  Chart.defaults.font.family = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  Chart.defaults.color = '#73726c';
+
+  const blue  = '#3266ad';
+  const green = '#1D9E75';
+  const warn  = '#EF9F27';
+  const red   = '#e24b4a';
+  const gray  = '#b5b3ae';
+  const grid  = 'rgba(0,0,0,0.055)';
+
+  // ── FUNNEL ──
+  new Chart(document.getElementById('funnelChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Clics landing\n(Beta est.)', 'Cuentas\ncreadas', 'ONB\niniciado', 'ONB\ncompletado', 'Con evento\nde valor'],
+      datasets: [{
+        data: [121, 33, 30, 26, 13],
+        backgroundColor: [
+          'rgba(50,102,173,0.55)',
+          'rgba(50,102,173,0.70)',
+          'rgba(50,102,173,0.65)',
+          'rgba(50,102,173,0.80)',
+          'rgba(29,158,117,0.70)',
+        ],
+        borderColor:  [blue, blue, blue, blue, green],
+        borderWidth: 0.5,
+        borderRadius: 5,
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => {
+              const vals = [121,33,30,26,13];
+              const pct = Math.round(vals[ctx.dataIndex]/vals[0]*100);
+              return ` ${ctx.parsed.x} — ${pct}% del top`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: { ticks: { font: { size: 11 } }, grid: { color: grid }, border: { display: false } },
+        y: { ticks: { color: '#1a1a1a', font: { size: 12 } }, grid: { display: false }, border: { display: false } }
+      }
+    }
+  });
+
+  // ── DAILY ──
+  const dailyLabels = ['19/05','20/05','21/05','22/05','23/05','24/05','25/05','26/05','27/05'];
+  const dailyVals   = [3, 2, 9, 7, 6, 1, 5, 0, 0];
+
+  new Chart(document.getElementById('dailyChart'), {
+    type: 'bar',
+    data: {
+      labels: dailyLabels,
+      datasets: [{
+        data: dailyVals,
+        backgroundColor: dailyVals.map(v => v === 0 ? 'rgba(226,75,74,0.30)' : 'rgba(50,102,173,0.62)'),
+        borderColor:     dailyVals.map(v => v === 0 ? red : blue),
+        borderWidth: 0.5,
+        borderRadius: 4,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.y} cuenta${ctx.parsed.y !== 1 ? 's' : ''}` } }
+      },
+      scales: {
+        x: { ticks: { font: { size: 10 }, maxRotation: 45 }, grid: { display: false }, border: { display: false } },
+        y: { ticks: { font: { size: 11 }, stepSize: 3 }, grid: { color: grid }, border: { display: false }, min: 0, max: 10 }
+      }
+    }
+  });
+
+  // ── RETENTION ──
+  const retPct  = [13.3, 10.7, 0, 0, 12.5, 25, 0, 0];
+  const retOf   = [30,28,24,18,8,4,3,3];
+  const retCt   = [4,3,0,0,1,1,0,0];
+  const retBg   = retPct.map(v => v >= 20 ? 'rgba(29,158,117,0.7)' : v >= 10 ? 'rgba(239,159,39,0.7)' : 'rgba(226,75,74,0.35)');
+  const retBord = retPct.map(v => v >= 20 ? green : v >= 10 ? warn : red);
+
+  new Chart(document.getElementById('retentionChart'), {
+    type: 'bar',
+    data: {
+      labels: ['D1','D2','D3','D4','D5','D6','D7','D8'],
+      datasets: [{
+        data: retPct,
+        backgroundColor: retBg,
+        borderColor: retBord,
+        borderWidth: 0.5,
+        borderRadius: 4,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => ` ${ctx.parsed.y}%`,
+            afterLabel: ctx => `${retCt[ctx.dataIndex]} de ${retOf[ctx.dataIndex]} elegibles`
+          }
+        }
+      },
+      scales: {
+        x: { ticks: { font: { size: 11 } }, grid: { display: false }, border: { display: false } },
+        y: {
+          ticks: { font: { size: 11 }, callback: v => v + '%' },
+          grid: { color: grid }, border: { display: false },
+          min: 0, max: 30
+        }
+      }
+    }
+  });
+
+  // ── VALUE EVENTS ──
+  new Chart(document.getElementById('pevChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Contacto\ncreado','Ítem\ncreado','Banco\n(intento)','Factura\nsubmitida','Compra\ncreada','Remisión\ncreada'],
+      datasets: [{
+        data: [13, 8, 6, 3, 2, 2],
+        backgroundColor: [
+          'rgba(29,158,117,0.7)',
+          'rgba(50,102,173,0.7)',
+          'rgba(83,74,183,0.7)',
+          'rgba(239,159,39,0.7)',
+          'rgba(115,114,108,0.6)',
+          'rgba(115,114,108,0.45)',
+        ],
+        borderWidth: 0,
+        borderRadius: 4,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.y} usuarios únicos` } }
+      },
+      scales: {
+        x: { ticks: { font: { size: 10 } }, grid: { display: false }, border: { display: false } },
+        y: { ticks: { font: { size: 11 }, stepSize: 2 }, grid: { color: grid }, border: { display: false }, min: 0, max: 15 }
+      }
+    }
+  });
+
+  // ── TOP QUERIES ──
+  new Chart(document.getElementById('queriesChart'), {
+    type: 'bar',
+    data: {
+      labels: ['"alegra"','"alegra\nvenezuela"','"alegra sistema\ncontable"','"alegra software\ncontable"','"alegra sistema\nadministrativo"','Resto'],
+      datasets: [{
+        data: [81, 16, 8, 5, 5, 15],
+        backgroundColor: [
+          'rgba(50,102,173,0.80)',
+          'rgba(50,102,173,0.68)',
+          'rgba(50,102,173,0.56)',
+          'rgba(50,102,173,0.44)',
+          'rgba(50,102,173,0.36)',
+          'rgba(115,114,108,0.40)',
+        ],
+        borderWidth: 0,
+        borderRadius: 4,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.y} clics` } }
+      },
+      scales: {
+        x: { ticks: { font: { size: 10 } }, grid: { display: false }, border: { display: false } },
+        y: { ticks: { font: { size: 11 } }, grid: { color: grid }, border: { display: false }, min: 0 }
+      }
+    }
+  });
+</script>
+</body>
+</html>

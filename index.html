@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VEN Beta — Dashboards</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 48px 32px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f4f1;
+      color: #1a1a1a;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    header { margin-bottom: 40px; }
+    header h1 { font-size: 22px; font-weight: 600; margin: 0 0 6px; }
+    header p { font-size: 13px; color: #73726c; margin: 0; }
+    .badge {
+      display: inline-block; font-size: 11px; font-weight: 500;
+      background: #FEF3CD; color: #856404;
+      padding: 3px 10px; border-radius: 20px;
+      border: 0.5px solid #FECB53; margin-top: 10px;
+    }
+    h2 {
+      font-size: 10.5px; font-weight: 600; color: #9e9d98;
+      letter-spacing: 0.09em; text-transform: uppercase;
+      margin: 32px 0 10px;
+    }
+    .report-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+    .report-item {
+      background: #fff; border-radius: 10px;
+      border: 0.5px solid #e5e3de;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 18px; text-decoration: none; color: inherit;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .report-item:hover {
+      border-color: #3266ad;
+      box-shadow: 0 0 0 3px rgba(50,102,173,0.08);
+    }
+    .report-date { font-size: 13px; font-weight: 500; }
+    .report-label { font-size: 12px; color: #73726c; margin-top: 2px; }
+    .report-arrow { color: #b5b3ae; font-size: 16px; }
+    footer { margin-top: 48px; font-size: 11px; color: #b5b3ae; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>VEN Beta — Dashboards ejecutivos</h1>
+    <p>Funnel de adquisición, activación y retención · Alegra Venezuela Beta</p>
+    <span class="badge">Beta activa desde 19/05/2026</span>
+  </header>
+
+  <h2>Reportes disponibles</h2>
+  <ul class="report-list">
+    <li>
+      <a class="report-item" href="2026-05-29-funnel.html">
+        <div>
+          <div class="report-date">29/05/2026 — Día 11</div>
+          <div class="report-label">Funnel ejecutivo · 33 cuentas · plateau detectado · 2 bugs</div>
+        </div>
+        <span class="report-arrow">→</span>
+      </a>
+    </li>
+  </ul>
+
+  <footer>
+    Fuentes: Amplitude · Google Search Console · G&S Feedback · Actualizado por el equipo de Producto VEN.
+  </footer>
+</body>
+</html>
