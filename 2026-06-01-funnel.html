@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VEN Beta — Funnel ejecutivo · 01/06/2026</title>
+  <title>VEN Beta — Funnel ejecutivo · 01/06/2026 (completo)</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; }
@@ -158,7 +158,7 @@
 <div class="header">
   <h1>VEN Beta — Funnel ejecutivo</h1>
   <span class="badge">Beta activa · Día 14</span>
-  <span class="date">SC al 30/05 · Amplitude al 27/05 · actualizado 01/06/2026</span>
+  <span class="date">Amplitude + SC al 30/05 · actualizado 01/06/2026</span>
 </div>
 <div class="subheader">Funnel de adquisición, activación y retención · Alegra Venezuela Beta · desde 19/05/2026</div>
 
@@ -168,53 +168,52 @@
   <div class="kpi">
     <div class="kpi-label">Clics landing</div>
     <div class="kpi-val">237</div>
-    <div class="kpi-sub good">↑82% vs semana anterior</div>
+    <div class="kpi-sub good">CTR 24.4% · pos. 2.1</div>
   </div>
   <div class="kpi">
     <div class="kpi-label">Impresiones</div>
     <div class="kpi-val">973</div>
-    <div class="kpi-sub">CTR 24.4% · pos. 2.1</div>
+    <div class="kpi-sub">Search Console · al 30/05</div>
   </div>
   <div class="kpi">
     <div class="kpi-label">Cuentas VEN creadas</div>
-    <div class="kpi-val">33+</div>
-    <div class="kpi-sub warn">Amplitude pendiente D10+</div>
+    <div class="kpi-val">41</div>
+    <div class="kpi-sub good">Plateau roto — +8 en D10–D13</div>
   </div>
   <div class="kpi">
     <div class="kpi-label">ONB completado</div>
-    <div class="kpi-val">26+</div>
-    <div class="kpi-sub warn">Datos al 27/05</div>
+    <div class="kpi-val">30</div>
+    <div class="kpi-sub good">73.2% de cuentas</div>
   </div>
   <div class="kpi">
     <div class="kpi-label">MQL estimado</div>
-    <div class="kpi-val">~13+</div>
+    <div class="kpi-val">~17</div>
     <div class="kpi-sub">ONB + ≥1 evento valor</div>
   </div>
   <div class="kpi">
     <div class="kpi-label">Retención D1</div>
     <div class="kpi-val">13%</div>
-    <div class="kpi-sub bad">4 / 30 elegibles</div>
+    <div class="kpi-sub bad">5 / 38 elegibles</div>
   </div>
 </div>
 
 <!-- FUNNEL -->
-<div class="section-label">Funnel de conversión — acumulado Beta (datos al 27/05)</div>
+<div class="section-label">Funnel de conversión — acumulado Beta al 01/06</div>
 <div class="card">
   <div style="position:relative; width:100%; height:220px">
     <canvas id="funnelChart"></canvas>
   </div>
   <div class="funnel-convs" style="margin-top:16px">
-    <div class="funnel-conv"><strong>~200</strong><span>Clics Beta est.</span></div>
-    <div class="funnel-arrow">→ <span style="color:#856404;font-weight:600">~17%</span></div>
-    <div class="funnel-conv"><strong>33+</strong><span>Cuentas</span></div>
-    <div class="funnel-arrow">→ <span style="color:#1D9E75;font-weight:600">90.9%</span></div>
-    <div class="funnel-conv"><strong>30</strong><span>ONB iniciado</span></div>
-    <div class="funnel-arrow">→ <span style="color:#1D9E75;font-weight:600">86.7%</span></div>
-    <div class="funnel-conv"><strong>26</strong><span>ONB completo</span></div>
-    <div class="funnel-arrow">→ <span style="color:#856404;font-weight:600">~50%</span></div>
-    <div class="funnel-conv"><strong>~13</strong><span>MQL</span></div>
+    <div class="funnel-conv"><strong>237</strong><span>Clics Beta</span></div>
+    <div class="funnel-arrow">→ <span style="color:#856404;font-weight:600">17.3%</span></div>
+    <div class="funnel-conv"><strong>41</strong><span>Cuentas</span></div>
+    <div class="funnel-arrow">→ <span style="color:#1D9E75;font-weight:600">85.4%</span></div>
+    <div class="funnel-conv"><strong>35</strong><span>ONB iniciado</span></div>
+    <div class="funnel-arrow">→ <span style="color:#1D9E75;font-weight:600">85.7%</span></div>
+    <div class="funnel-conv"><strong>30</strong><span>ONB completo</span></div>
+    <div class="funnel-arrow">→ <span style="color:#856404;font-weight:600">~57%</span></div>
+    <div class="funnel-conv"><strong>~17</strong><span>MQL</span></div>
   </div>
-  <div class="pending-note" style="margin-top:14px">⏳ Cuentas D10–D14 (28/05–01/06) pendientes — reconectar Amplitude para actualizar funnel completo.</div>
 </div>
 
 <!-- DAILY ACCOUNTS + SEARCH CONSOLE CLICS -->
@@ -226,8 +225,8 @@
       <div style="position:relative; width:100%; height:200px">
         <canvas id="dailyChart"></canvas>
       </div>
-      <div class="plateau-note" style="margin-top:10px">⚠️ 0 registros el 26 y 27/05 (plateau)</div>
-      <div class="pending-note">⏳ D10–D14 requieren Amplitude reconectado</div>
+      <div class="plateau-note" style="margin-top:10px">⚠️ 0 registros el 26 y 27/05 — plateau temporal</div>
+      <div class="good-note">✅ Plateau roto: +8 nuevas cuentas entre 28/05–31/05</div>
     </div>
   </div>
 
@@ -250,18 +249,19 @@
     Usuarios que volvieron al producto N días después de crear su cuenta. Cohort: ac-account-created · return event: cualquier actividad.
   </div>
   <div class="ret-row">
-    <div class="ret-cell"><span class="day">D1</span><span class="pct mid">13.3%</span></div>
-    <div class="ret-cell"><span class="day">D2</span><span class="pct low">10.7%</span></div>
+    <div class="ret-cell"><span class="day">D1</span><span class="pct mid">13.2%</span></div>
+    <div class="ret-cell"><span class="day">D2</span><span class="pct low">11.1%</span></div>
     <div class="ret-cell"><span class="day">D3</span><span class="pct zero">0%</span></div>
     <div class="ret-cell"><span class="day">D4</span><span class="pct zero">0%</span></div>
-    <div class="ret-cell"><span class="day">D5</span><span class="pct mid">12.5%</span></div>
-    <div class="ret-cell"><span class="day">D6</span><span class="pct high">25%</span></div>
+    <div class="ret-cell"><span class="day">D5</span><span class="pct low">6.1%</span></div>
+    <div class="ret-cell"><span class="day">D6</span><span class="pct low">6.9%</span></div>
     <div class="ret-cell"><span class="day">D7</span><span class="pct zero">0%</span></div>
     <div class="ret-cell"><span class="day">D8</span><span class="pct zero">0%</span></div>
-    <div class="ret-cell"><span class="day">D9+</span><span class="pct pend">—</span></div>
+    <div class="ret-cell"><span class="day">D9</span><span class="pct zero">0%</span></div>
+    <div class="ret-cell"><span class="day">D10</span><span class="pct zero">0%</span></div>
   </div>
   <div style="font-size:11px;color:#9e9d98;margin-top:10px">
-    D3/D4 = 0% coincide con fin de semana (24–25/05). D6 = 25% señal de regreso. D9+ pendiente de actualizar.
+    D3/D4 = 0% fin de semana (24–25/05). D5/D6 bajan a 6–7%. D7–D10 = 0%: señal de abandono post-onboarding.
   </div>
 </div>
 
@@ -292,33 +292,33 @@
       </tr>
       <tr>
         <td>Cuentas VEN creadas <code style="font-size:10px;color:#73726c">ac-account-created</code></td>
-        <td style="font-weight:500">33+ <span style="font-size:11px;color:#856404">(D10+ pendiente)</span></td>
-        <td><span class="pill warn">~14–17% de clics</span></td>
-        <td style="color:#73726c;font-size:12px">Amplitude · al 27/05</td>
+        <td style="font-weight:500">41</td>
+        <td><span class="pill warn">17.3% de clics</span></td>
+        <td style="color:#73726c;font-size:12px">Amplitude · al 01/06</td>
       </tr>
       <tr>
         <td>Onboarding iniciado <code style="font-size:10px;color:#73726c">ac-onboarding-started</code></td>
-        <td style="font-weight:500">30</td>
-        <td><span class="pill good">90.9%</span></td>
-        <td style="color:#73726c;font-size:12px">Amplitude · al 27/05</td>
+        <td style="font-weight:500">35</td>
+        <td><span class="pill good">85.4%</span></td>
+        <td style="color:#73726c;font-size:12px">Amplitude · al 01/06</td>
       </tr>
       <tr>
         <td>Onboarding completado <code style="font-size:10px;color:#73726c">ac-onboarding-finished</code></td>
-        <td style="font-weight:500">26</td>
-        <td><span class="pill good">86.7%</span></td>
-        <td style="color:#73726c;font-size:12px">Amplitude · al 27/05</td>
+        <td style="font-weight:500">30</td>
+        <td><span class="pill good">85.7%</span></td>
+        <td style="color:#73726c;font-size:12px">Amplitude · al 01/06</td>
       </tr>
       <tr>
         <td>Con ≥1 evento de valor (MQL)</td>
-        <td style="font-weight:500">~13+</td>
-        <td><span class="pill warn">~50% de ONB</span></td>
-        <td style="color:#73726c;font-size:12px">Amplitude · al 27/05</td>
+        <td style="font-weight:500">~17</td>
+        <td><span class="pill warn">~57% de ONB</span></td>
+        <td style="color:#73726c;font-size:12px">Amplitude · al 01/06</td>
       </tr>
       <tr>
         <td>Retención D1</td>
-        <td style="font-weight:500">4 / 30</td>
-        <td><span class="pill bad">13.3%</span></td>
-        <td style="color:#73726c;font-size:12px">Amplitude · al 27/05</td>
+        <td style="font-weight:500">5 / 38</td>
+        <td><span class="pill bad">13.2%</span></td>
+        <td style="color:#73726c;font-size:12px">Amplitude · al 01/06</td>
       </tr>
     </tbody>
   </table>
@@ -383,12 +383,12 @@
 <div class="section-label">Análisis y próximos pasos</div>
 <div class="insight-grid">
   <div class="insight-card">
-    <h3>📈 Clics en alza — CTR 24.4%</h3>
-    <p>El CTR mejoró de 14.8% a 24.4% en los últimos días. 28/05 fue récord con 37 clics. El tráfico orgánico sigue creciendo. <strong>Oportunidad:</strong> convertir este interés en nuevos registros — evaluar urgentemente el plateau.</p>
+    <h3>✅ Plateau roto — +8 cuentas nuevas</h3>
+    <p>Tras 2 días en 0, se registraron 8 cuentas más entre el 28 y 31/05 (2+3+1+2). El pool se repuso. CTR subió a 24.4% y 28/05 marcó récord con 37 clics. <strong>Mantener el momentum</strong> con nueva ola de invitaciones.</p>
   </div>
   <div class="insight-card">
-    <h3>⚠️ Plateau de registros</h3>
-    <p>0 cuentas nuevas el 26 y 27/05 (días hábiles). El pool inicial de invitaciones se agotó. <strong>Acción:</strong> activar nueva ola de invitaciones y abrir canales adicionales para capturar el tráfico creciente.</p>
+    <h3>⚠️ Retención D7–D10 = 0%</h3>
+    <p>Ningún usuario volvió a partir del D7. La señal de D5/D6 (6–7%) no se sostuvo. <strong>Acción urgente:</strong> contacto directo con el cohort, entender por qué no regresan y qué fricciones encuentran.</p>
   </div>
   <div class="insight-card">
     <h3>🐛 Bugs reportados (21/05)</h3>
@@ -401,14 +401,14 @@
   </div>
 </div>
 <div class="alert" style="margin-top:10px">
-  <p>📊 <strong>Dos gaps críticos:</strong> (1) <strong>Amplitude expirado</strong> — sin datos D10–D14 para cuentas, funnel y retención actualizados. Reconectar desde claude.ai → Connections → Amplitude. (2) <strong>GA4 no conectado</strong> a alegra.com/venezuela/ — imposible medir CTA, sesiones reales ni desglose de canales.</p>
+  <p>📊 <strong>Gap crítico pendiente:</strong> GA4 no conectado a alegra.com/venezuela/ — imposible medir clics en CTA, sesiones reales ni desglose de canales (orgánico vs directo vs pago). Conectar GA4 es la prioridad para completar el top funnel que solicita el equipo.</p>
 </div>
 
 <!-- FOOTER -->
 <div class="data-note">
   Fuentes: Amplitude · ProjectId 496026 · Cohort VEN: appVersion = VEN o venezuela · excluye @alegra.com · desde 19/05/2026 ·
   Google Search Console: /venezuela/ + país Venezuela · 87 queries · CTR 24.4% · pos. 2.1 · datos al 30/05/2026 ·
-  Amplitude: ac-account-created, ac-onboarding-started, ac-onboarding-finished, eventos de valor · datos al 27/05/2026 ·
+  Amplitude: ac-account-created, ac-onboarding-started, ac-onboarding-finished, eventos de valor · datos al 01/06/2026 ·
   MQL = ONB completado + ≥1 evento de valor.
 </div>
 
@@ -424,13 +424,13 @@
   const gray  = '#b5b3ae';
   const grid  = 'rgba(0,0,0,0.055)';
 
-  // ── FUNNEL (datos al 27/05) ──
+  // ── FUNNEL (datos al 01/06) ──
   new Chart(document.getElementById('funnelChart'), {
     type: 'bar',
     data: {
-      labels: ['Clics landing (Beta est.)', 'Cuentas creadas', 'ONB iniciado', 'ONB completado', 'MQL (≥1 valor)'],
+      labels: ['Clics landing (SC)', 'Cuentas creadas', 'ONB iniciado', 'ONB completado', 'MQL (≥1 valor)'],
       datasets: [{
-        data: [200, 33, 30, 26, 13],
+        data: [237, 41, 35, 30, 17],
         backgroundColor: ['rgba(50,102,173,0.40)','rgba(50,102,173,0.58)','rgba(50,102,173,0.70)','rgba(50,102,173,0.85)','rgba(29,158,117,0.75)'],
         borderColor: [blue, blue, blue, blue, green],
         borderWidth: 0.5, borderRadius: 5,
@@ -440,7 +440,7 @@
       indexAxis: 'y', responsive: true, maintainAspectRatio: false,
       plugins: {
         legend: { display: false },
-        tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.x} — ${Math.round(ctx.parsed.x/200*100)}% del top` } }
+        tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.x} — ${Math.round(ctx.parsed.x/237*100)}% del top` } }
       },
       scales: {
         x: { ticks: { font: { size: 11 } }, grid: { color: grid }, border: { display: false } },
@@ -451,7 +451,7 @@
 
   // ── DAILY ACCOUNTS (Amplitude, D1–D9, D10+ pending) ──
   const acctLabels = ['19/05','20/05','21/05','22/05','23/05','24/05','25/05','26/05','27/05','28/05','29/05','30/05','31/05','01/06'];
-  const acctData   = [3, 2, 9, 7, 6, 1, 5, 0, 0, null, null, null, null, null];
+  const acctData   = [3, 2, 9, 7, 6, 1, 5, 0, 0, 2, 3, 1, 2, 0];
   new Chart(document.getElementById('dailyChart'), {
     type: 'bar',
     data: {
@@ -507,9 +507,9 @@
   new Chart(document.getElementById('pevChart'), {
     type: 'bar',
     data: {
-      labels: ['Contactos', 'Ítems', 'Bancos', 'Facturas', 'Gastos', 'Cotizaciones'],
+      labels: ['Contactos', 'Ítems', 'Facturas', 'Bancos', 'Gastos', 'Cotizaciones'],
       datasets: [{
-        data: [13, 8, 6, 3, 2, 1],
+        data: [17, 14, 7, 8, 4, 2],
         backgroundColor: ['rgba(50,102,173,0.80)','rgba(50,102,173,0.65)','rgba(50,102,173,0.55)','rgba(50,102,173,0.45)','rgba(50,102,173,0.38)','rgba(50,102,173,0.30)'],
         borderColor: blue, borderWidth: 0.5, borderRadius: 4,
       }]
