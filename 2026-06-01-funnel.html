@@ -167,13 +167,13 @@
 <div class="kpi-grid">
   <div class="kpi">
     <div class="kpi-label">Clics landing</div>
-    <div class="kpi-val">237</div>
-    <div class="kpi-sub good">CTR 24.4% · pos. 2.1</div>
+    <div class="kpi-val">244</div>
+    <div class="kpi-sub good">CTR 25.7% · pos. 1.9</div>
   </div>
   <div class="kpi">
     <div class="kpi-label">Impresiones</div>
-    <div class="kpi-val">973</div>
-    <div class="kpi-sub">Search Console · al 30/05</div>
+    <div class="kpi-val">950</div>
+    <div class="kpi-sub">Search Console · últ. 3 meses</div>
   </div>
   <div class="kpi">
     <div class="kpi-label">Cuentas VEN creadas</div>
@@ -204,8 +204,8 @@
     <canvas id="funnelChart"></canvas>
   </div>
   <div class="funnel-convs" style="margin-top:16px">
-    <div class="funnel-conv"><strong>237</strong><span>Clics Beta</span></div>
-    <div class="funnel-arrow">→ <span style="color:#856404;font-weight:600">17.3%</span></div>
+    <div class="funnel-conv"><strong>244</strong><span>Clics landing</span></div>
+    <div class="funnel-arrow">→ <span style="color:#856404;font-weight:600">~17%</span></div>
     <div class="funnel-conv"><strong>41</strong><span>Cuentas</span></div>
     <div class="funnel-arrow">→ <span style="color:#1D9E75;font-weight:600">85.4%</span></div>
     <div class="funnel-conv"><strong>35</strong><span>ONB iniciado</span></div>
@@ -280,9 +280,9 @@
     <tbody>
       <tr>
         <td>Clics landing <code style="font-size:10px;color:#73726c">/venezuela/</code></td>
-        <td style="font-weight:500">237 clics · 973 imp.</td>
+        <td style="font-weight:500">244 clics · 950 imp.</td>
         <td><span class="pill nd">Base</span></td>
-        <td style="color:#73726c;font-size:12px">Search Console · al 30/05</td>
+        <td style="color:#73726c;font-size:12px">Search Console · últ. 3 meses</td>
       </tr>
       <tr>
         <td>Clics en CTA (botón "Crear cuenta")</td>
@@ -293,7 +293,7 @@
       <tr>
         <td>Cuentas VEN creadas <code style="font-size:10px;color:#73726c">ac-account-created</code></td>
         <td style="font-weight:500">41</td>
-        <td><span class="pill warn">17.3% de clics</span></td>
+        <td><span class="pill warn">~17% de clics</span></td>
         <td style="color:#73726c;font-size:12px">Amplitude · al 01/06</td>
       </tr>
       <tr>
@@ -384,7 +384,7 @@
 <div class="insight-grid">
   <div class="insight-card">
     <h3>✅ Plateau roto — +8 cuentas nuevas</h3>
-    <p>Tras 2 días en 0, se registraron 8 cuentas más entre el 28 y 31/05 (2+3+1+2). El pool se repuso. CTR subió a 24.4% y 28/05 marcó récord con 37 clics. <strong>Mantener el momentum</strong> con nueva ola de invitaciones.</p>
+    <p>Tras 2 días en 0, se registraron 8 cuentas más entre el 28 y 31/05 (2+3+1+2), todo crecimiento orgánico. CTR subió a 25.7% y 28/05 marcó récord con 37 clics en un día.</p>
   </div>
   <div class="insight-card">
     <h3>⚠️ Retención D7–D10 = 0%</h3>
@@ -392,8 +392,8 @@
   </div>
   <div class="insight-card">
     <h3>🐛 Bugs reportados (21/05)</h3>
-    <p><strong>Income:</strong> "No me permite poner mi factura como pagada, me dice que es un monto mayor."<br>
-    <strong>Banks:</strong> "El saldo de mi banco cambia el valor al cargarlo." → Ambos pendientes de crear en Linear.</p>
+    <p><strong>Income:</strong> "No me permite poner mi factura como pagada, me dice que es un monto mayor." → <span style="color:#856404;font-weight:600">In progress</span><br>
+    <strong>Banks:</strong> "El saldo de mi banco cambia el valor al cargarlo." → <span style="color:#0D6E4F;font-weight:600">Resuelto ✓</span></p>
   </div>
   <div class="insight-card">
     <h3>👥 Entrevistas con usuarios</h3>
@@ -407,7 +407,7 @@
 <!-- FOOTER -->
 <div class="data-note">
   Fuentes: Amplitude · ProjectId 496026 · Cohort VEN: appVersion = VEN o venezuela · excluye @alegra.com · desde 19/05/2026 ·
-  Google Search Console: /venezuela/ + país Venezuela · 87 queries · CTR 24.4% · pos. 2.1 · datos al 30/05/2026 ·
+  Google Search Console: /venezuela/ + país Venezuela · 87 queries · 244 clics · 950 imp · CTR 25.7% · pos. 1.9 · últimos 3 meses ·
   Amplitude: ac-account-created, ac-onboarding-started, ac-onboarding-finished, eventos de valor · datos al 01/06/2026 ·
   MQL = ONB completado + ≥1 evento de valor.
 </div>
@@ -430,7 +430,7 @@
     data: {
       labels: ['Clics landing (SC)', 'Cuentas creadas', 'ONB iniciado', 'ONB completado', 'MQL (≥1 valor)'],
       datasets: [{
-        data: [237, 41, 35, 30, 17],
+        data: [244, 41, 35, 30, 17],
         backgroundColor: ['rgba(50,102,173,0.40)','rgba(50,102,173,0.58)','rgba(50,102,173,0.70)','rgba(50,102,173,0.85)','rgba(29,158,117,0.75)'],
         borderColor: [blue, blue, blue, blue, green],
         borderWidth: 0.5, borderRadius: 5,
@@ -440,7 +440,7 @@
       indexAxis: 'y', responsive: true, maintainAspectRatio: false,
       plugins: {
         legend: { display: false },
-        tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.x} — ${Math.round(ctx.parsed.x/237*100)}% del top` } }
+        tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.x} — ${Math.round(ctx.parsed.x/244*100)}% del top` } }
       },
       scales: {
         x: { ticks: { font: { size: 11 } }, grid: { color: grid }, border: { display: false } },
