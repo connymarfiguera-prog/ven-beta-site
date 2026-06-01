@@ -186,9 +186,9 @@
     <div class="kpi-sub good">73.2% de cuentas</div>
   </div>
   <div class="kpi">
-    <div class="kpi-label">MQL estimado</div>
-    <div class="kpi-val">~17</div>
-    <div class="kpi-sub">ONB + ≥1 evento valor</div>
+    <div class="kpi-label">MQL</div>
+    <div class="kpi-val">30</div>
+    <div class="kpi-sub">ac-onboarding-finished</div>
   </div>
   <div class="kpi">
     <div class="kpi-label">Retención D1</div>
@@ -210,9 +210,7 @@
     <div class="funnel-arrow">→ <span style="color:#1D9E75;font-weight:600">85.4%</span></div>
     <div class="funnel-conv"><strong>35</strong><span>ONB iniciado</span></div>
     <div class="funnel-arrow">→ <span style="color:#1D9E75;font-weight:600">85.7%</span></div>
-    <div class="funnel-conv"><strong>30</strong><span>ONB completo</span></div>
-    <div class="funnel-arrow">→ <span style="color:#856404;font-weight:600">~57%</span></div>
-    <div class="funnel-conv"><strong>~17</strong><span>MQL</span></div>
+    <div class="funnel-conv"><strong>30</strong><span>MQL</span></div>
   </div>
 </div>
 
@@ -309,9 +307,9 @@
         <td style="color:#73726c;font-size:12px">Amplitude · al 01/06</td>
       </tr>
       <tr>
-        <td>Con ≥1 evento de valor (MQL)</td>
-        <td style="font-weight:500">~17</td>
-        <td><span class="pill warn">~57% de ONB</span></td>
+        <td>MQL — Onboarding completado <code style="font-size:10px;color:#73726c">ac-onboarding-finished</code></td>
+        <td style="font-weight:500">30</td>
+        <td><span class="pill good">73.2% de cuentas</span></td>
         <td style="color:#73726c;font-size:12px">Amplitude · al 01/06</td>
       </tr>
       <tr>
@@ -409,7 +407,7 @@
   Fuentes: Amplitude · ProjectId 496026 · Cohort VEN: appVersion = VEN o venezuela · excluye @alegra.com · desde 19/05/2026 ·
   Google Search Console: /venezuela/ + país Venezuela · 87 queries · 244 clics · 950 imp · CTR 25.7% · pos. 1.9 · últimos 3 meses ·
   Amplitude: ac-account-created, ac-onboarding-started, ac-onboarding-finished, eventos de valor · datos al 01/06/2026 ·
-  MQL = ONB completado + ≥1 evento de valor.
+  MQL = ac-onboarding-finished (Sign Up que completa el onboarding — señal de interés, usuario calificado para Growth).
 </div>
 
 <!-- CHARTS -->
@@ -428,11 +426,11 @@
   new Chart(document.getElementById('funnelChart'), {
     type: 'bar',
     data: {
-      labels: ['Clics landing (SC)', 'Cuentas creadas', 'ONB iniciado', 'ONB completado', 'MQL (≥1 valor)'],
+      labels: ['Clics landing (SC)', 'Cuentas creadas', 'ONB iniciado', 'MQL (ONB completado)'],
       datasets: [{
-        data: [244, 41, 35, 30, 17],
-        backgroundColor: ['rgba(50,102,173,0.40)','rgba(50,102,173,0.58)','rgba(50,102,173,0.70)','rgba(50,102,173,0.85)','rgba(29,158,117,0.75)'],
-        borderColor: [blue, blue, blue, blue, green],
+        data: [244, 41, 35, 30],
+        backgroundColor: ['rgba(50,102,173,0.40)','rgba(50,102,173,0.60)','rgba(50,102,173,0.78)','rgba(29,158,117,0.75)'],
+        borderColor: [blue, blue, blue, green],
         borderWidth: 0.5, borderRadius: 5,
       }]
     },
