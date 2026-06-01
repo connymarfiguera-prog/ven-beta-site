@@ -285,8 +285,8 @@
       <tr>
         <td>Clics en CTA (botón "Crear cuenta")</td>
         <td style="color:#b5b3ae;font-style:italic;font-size:12px">Sin dato</td>
-        <td><span class="pill nd">N/D — sin GA4</span></td>
-        <td style="color:#b5b3ae;font-size:12px">GA4 pendiente</td>
+        <td><span class="pill nd">N/D — no instrumentado</span></td>
+        <td style="color:#b5b3ae;font-size:12px">Amplitude: <code style="font-size:10px">cta-crear-cuenta</code> no se dispara desde /venezuela/</td>
       </tr>
       <tr>
         <td>Cuentas VEN creadas <code style="font-size:10px;color:#73726c">ac-account-created</code></td>
@@ -346,31 +346,30 @@
   </div>
 
   <div>
-    <div class="section-label">Canales de tráfico</div>
+    <div class="section-label">Canales de adquisición</div>
     <div class="card" style="padding-bottom:14px">
       <div style="font-size:11px;color:#73726c;margin-bottom:12px">
-        Desglose por canal no disponible — GA4 no conectado a alegra.com/venezuela/.<br><br>
-        <strong style="color:#1a1a1a">Conocido vía Search Console:</strong>
+        Origen de las 41 cuentas VEN — fuente: <strong>Amplitude</strong> (<code style="font-size:10px">gp:initial_utm_source</code>)
       </div>
       <div class="channel-list">
         <div class="channel-row">
-          <span class="channel-label"><span class="ch-dot" style="background:#3266ad"></span>Orgánico Google</span>
-          <div class="channel-bar-wrap"><div class="channel-bar" style="width:100%;background:#3266ad"></div></div>
-          <span class="channel-val">237 clics</span>
+          <span class="channel-label"><span class="ch-dot" style="background:#3266ad"></span>Orgánico / Directo</span>
+          <div class="channel-bar-wrap"><div class="channel-bar" style="width:86%;background:#3266ad"></div></div>
+          <span class="channel-val">~35 cuentas</span>
         </div>
         <div class="channel-row">
-          <span class="channel-label"><span class="ch-dot" style="background:#b5b3ae"></span>Directo / otros</span>
-          <div class="channel-bar-wrap"><div class="channel-bar" style="width:0%;background:#b5b3ae"></div></div>
-          <span class="channel-val" style="color:#b5b3ae">N/D</span>
+          <span class="channel-label"><span class="ch-dot" style="background:#1D9E75"></span>IA referral (ChatGPT)</span>
+          <div class="channel-bar-wrap"><div class="channel-bar" style="width:7%;background:#1D9E75"></div></div>
+          <span class="channel-val">3 cuentas</span>
         </div>
         <div class="channel-row">
-          <span class="channel-label"><span class="ch-dot" style="background:#b5b3ae"></span>Pago / social</span>
-          <div class="channel-bar-wrap"><div class="channel-bar" style="width:0%;background:#b5b3ae"></div></div>
-          <span class="channel-val" style="color:#b5b3ae">N/D</span>
+          <span class="channel-label"><span class="ch-dot" style="background:#EF9F27"></span>Google Ads (paid)</span>
+          <div class="channel-bar-wrap"><div class="channel-bar" style="width:7%;background:#EF9F27"></div></div>
+          <span class="channel-val">~3 cuentas</span>
         </div>
       </div>
-      <div style="font-size:11px;color:#856404;margin-top:12px;padding:6px 8px;background:#FEF3CD;border-radius:6px">
-        Conectar GA4 para desglose orgánico vs directo vs pago.
+      <div style="font-size:11px;color:#0D6E4F;margin-top:12px;padding:6px 8px;background:#d1fae5;border-radius:6px">
+        Señal: 3 usuarios llegaron vía ChatGPT — descubrimiento orgánico por IA, sin inversión.
       </div>
     </div>
   </div>
@@ -399,7 +398,7 @@
   </div>
 </div>
 <div class="alert" style="margin-top:10px">
-  <p>📊 <strong>Gap crítico pendiente:</strong> GA4 no conectado a alegra.com/venezuela/ — imposible medir clics en CTA, sesiones reales ni desglose de canales (orgánico vs directo vs pago). Conectar GA4 es la prioridad para completar el top funnel que solicita el equipo.</p>
+  <p>📊 <strong>Gap de instrumentación:</strong> El evento <code style="font-size:10px">cta-crear-cuenta</code> no está implementado en <code style="font-size:10px">alegra.com/venezuela/</code> — los clics en el CTA no se registran en Amplitude. Instrumentar este evento es la prioridad para medir el top-funnel real (clics → registro).</p>
 </div>
 
 <!-- FOOTER -->
