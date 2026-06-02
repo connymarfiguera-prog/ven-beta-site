@@ -17,19 +17,23 @@
 
     /* ── Snapshot selector ── */
     .snapshot-bar {
-      display: flex; align-items: center; gap: 10px; margin-bottom: 22px;
+      display: flex; align-items: center; gap: 12px; margin-bottom: 22px;
       background: #fff; border: 0.5px solid #e5e3de; border-radius: 10px;
-      padding: 12px 18px; flex-wrap: wrap;
+      padding: 12px 18px;
     }
-    .snapshot-label { font-size: 11px; font-weight: 600; color: #9e9d98; letter-spacing: 0.07em; text-transform: uppercase; white-space: nowrap; margin-right: 4px; }
-    .snap-btns-wrap { display: flex; gap: 6px; flex-wrap: wrap; }
-    .snap-btn {
-      font-size: 13px; font-weight: 500; padding: 6px 18px; border-radius: 20px;
-      border: 1px solid #e5e3de; background: #f5f4f1; color: #73726c;
-      cursor: pointer; transition: all 0.12s;
+    .snapshot-label { font-size: 11px; font-weight: 600; color: #9e9d98; letter-spacing: 0.07em; text-transform: uppercase; white-space: nowrap; }
+    #snapSelect {
+      font-size: 13px; font-weight: 500; color: #1a1a1a;
+      padding: 6px 32px 6px 12px; border-radius: 8px;
+      border: 1px solid #e5e3de; background: #f5f4f1;
+      cursor: pointer; outline: none;
+      appearance: none; -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2373726c' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 10px center;
+      min-width: 180px;
     }
-    .snap-btn:hover { border-color: #3266ad; color: #3266ad; background: #fff; }
-    .snap-btn.active { background: #3266ad; color: #fff; border-color: #3266ad; font-weight: 600; }
+    #snapSelect:focus { border-color: #3266ad; background-color: #fff; }
+    .snap-meta { font-size: 12px; color: #9e9d98; margin-left: 4px; }
 
     .section-label { font-size: 10.5px; font-weight: 600; color: #9e9d98; letter-spacing: 0.09em; text-transform: uppercase; margin: 24px 0 10px; }
 
@@ -113,8 +117,9 @@
 
 <!-- SNAPSHOT SELECTOR -->
 <div class="snapshot-bar">
-  <span class="snapshot-label">Ver snapshot</span>
-  <div class="snap-btns-wrap" id="snapBtns"></div>
+  <span class="snapshot-label">Snapshot</span>
+  <select id="snapSelect"></select>
+  <span class="snap-meta" id="snapMeta"></span>
 </div>
 
 <!-- KPIs -->
@@ -367,8 +372,11 @@ const charts = {};
 function render(date) {
   const d = SNAPSHOTS[date];
 
-  // Buttons
-  document.querySelectorAll('.snap-btn').forEach(b => b.classList.toggle('active', b.dataset.date === date));
+  // Dropdown sync
+  const sel = document.getElementById('snapSelect');
+  if (sel) sel.value = date;
+  const meta = document.getElementById('snapMeta');
+  if (meta) meta.textContent = `${DATES.length} snapshots disponibles`;
 
   // Header
   document.getElementById('hdrBadge').textContent = `Beta activa · Día ${d.betaDay}`;
@@ -484,16 +492,15 @@ window.addEventListener('DOMContentLoaded', () => {
   Chart.defaults.font.family = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
   Chart.defaults.color = '#73726c';
 
-  // Snapshot buttons
-  const container = document.getElementById('snapBtns');
+  // Snapshot dropdown
+  const select = document.getElementById('snapSelect');
   DATES.forEach(date => {
-    const btn = document.createElement('button');
-    btn.className = 'snap-btn';
-    btn.dataset.date = date;
-    btn.textContent = SNAPSHOTS[date].label;
-    btn.onclick = () => render(date);
-    container.appendChild(btn);
+    const opt = document.createElement('option');
+    opt.value = date;
+    opt.textContent = SNAPSHOTS[date].label + ' — Día ' + SNAPSHOTS[date].betaDay;
+    select.appendChild(opt);
   });
+  select.addEventListener('change', () => render(select.value));
 
   const latest = DATES[0];
   const d = SNAPSHOTS[latest];
