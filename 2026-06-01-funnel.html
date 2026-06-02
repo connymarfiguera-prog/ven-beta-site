@@ -158,7 +158,7 @@
 <div class="header">
   <h1>VEN Beta — Funnel ejecutivo</h1>
   <span class="badge">Beta activa · Día 14</span>
-  <span class="date">Amplitude + SC al 30/05 · actualizado 01/06/2026</span>
+  <span class="date">Amplitude + SC al 01/06 · actualizado 01/06/2026</span>
 </div>
 <div class="subheader">Funnel de adquisición, activación y retención · Alegra Venezuela Beta · desde 19/05/2026</div>
 
@@ -167,13 +167,13 @@
 <div class="kpi-grid">
   <div class="kpi">
     <div class="kpi-label">Clics landing</div>
-    <div class="kpi-val">244</div>
-    <div class="kpi-sub good">CTR 25.7% · pos. 1.9</div>
+    <div class="kpi-val">258</div>
+    <div class="kpi-sub good">CTR 36.1% · pos. 1.8</div>
   </div>
   <div class="kpi">
     <div class="kpi-label">Impresiones</div>
-    <div class="kpi-val">950</div>
-    <div class="kpi-sub">Search Console · últ. 3 meses</div>
+    <div class="kpi-val">715</div>
+    <div class="kpi-sub">SC Beta · 19/05–01/06</div>
   </div>
   <div class="kpi">
     <div class="kpi-label">Cuentas VEN creadas</div>
@@ -181,14 +181,14 @@
     <div class="kpi-sub good">Plateau roto — +8 en D10–D13</div>
   </div>
   <div class="kpi">
-    <div class="kpi-label">ONB completado</div>
+    <div class="kpi-label">MQL (ONB completado)</div>
     <div class="kpi-val">30</div>
-    <div class="kpi-sub good">73.2% de cuentas</div>
+    <div class="kpi-sub good">ac-onboarding-finished</div>
   </div>
   <div class="kpi">
-    <div class="kpi-label">MQL</div>
-    <div class="kpi-val">30</div>
-    <div class="kpi-sub">ac-onboarding-finished</div>
+    <div class="kpi-label">PQL (≥1 evento valor)</div>
+    <div class="kpi-val">~13</div>
+    <div class="kpi-sub">ONB + uso real del producto</div>
   </div>
   <div class="kpi">
     <div class="kpi-label">Retención D1</div>
@@ -204,13 +204,15 @@
     <canvas id="funnelChart"></canvas>
   </div>
   <div class="funnel-convs" style="margin-top:16px">
-    <div class="funnel-conv"><strong>244</strong><span>Clics landing</span></div>
-    <div class="funnel-arrow">→ <span style="color:#856404;font-weight:600">~17%</span></div>
+    <div class="funnel-conv"><strong>258</strong><span>Clics landing</span></div>
+    <div class="funnel-arrow">→ <span style="color:#856404;font-weight:600">~16%</span></div>
     <div class="funnel-conv"><strong>41</strong><span>Cuentas</span></div>
     <div class="funnel-arrow">→ <span style="color:#1D9E75;font-weight:600">85.4%</span></div>
     <div class="funnel-conv"><strong>35</strong><span>ONB iniciado</span></div>
     <div class="funnel-arrow">→ <span style="color:#1D9E75;font-weight:600">85.7%</span></div>
     <div class="funnel-conv"><strong>30</strong><span>MQL</span></div>
+    <div class="funnel-arrow">→ <span style="color:#856404;font-weight:600">~43%</span></div>
+    <div class="funnel-conv"><strong>~13</strong><span>PQL</span></div>
   </div>
 </div>
 
@@ -278,9 +280,9 @@
     <tbody>
       <tr>
         <td>Clics landing <code style="font-size:10px;color:#73726c">/venezuela/</code></td>
-        <td style="font-weight:500">244 clics · 950 imp.</td>
+        <td style="font-weight:500">258 clics · 715 imp.</td>
         <td><span class="pill nd">Base</span></td>
-        <td style="color:#73726c;font-size:12px">Search Console · últ. 3 meses</td>
+        <td style="color:#73726c;font-size:12px">Search Console · Beta 19/05–01/06</td>
       </tr>
       <tr>
         <td>Clics en CTA (botón "Crear cuenta")</td>
@@ -301,16 +303,16 @@
         <td style="color:#73726c;font-size:12px">Amplitude · al 01/06</td>
       </tr>
       <tr>
-        <td>Onboarding completado <code style="font-size:10px;color:#73726c">ac-onboarding-finished</code></td>
+        <td>MQL — Onboarding completado <code style="font-size:10px;color:#73726c">ac-onboarding-finished</code></td>
         <td style="font-weight:500">30</td>
         <td><span class="pill good">85.7%</span></td>
         <td style="color:#73726c;font-size:12px">Amplitude · al 01/06</td>
       </tr>
       <tr>
-        <td>MQL — Onboarding completado <code style="font-size:10px;color:#73726c">ac-onboarding-finished</code></td>
-        <td style="font-weight:500">30</td>
-        <td><span class="pill good">73.2% de cuentas</span></td>
-        <td style="color:#73726c;font-size:12px">Amplitude · al 01/06</td>
+        <td>PQL — ≥1 evento de valor <small style="color:#9e9d98;font-size:10px">(Facturas, Contactos, Bancos…)</small></td>
+        <td style="font-weight:500">~13</td>
+        <td><span class="pill warn">~43% de MQL</span></td>
+        <td style="color:#73726c;font-size:12px">Amplitude · al 27/05</td>
       </tr>
       <tr>
         <td>Retención D1</td>
@@ -338,7 +340,7 @@
   <div>
     <div class="section-label">Top queries orgánicas</div>
     <div class="card" style="padding-bottom:14px">
-      <div style="font-size:11px;color:#73726c;margin-bottom:10px">87 queries · marca "alegra" concentra 73% de clics</div>
+      <div style="font-size:11px;color:#73726c;margin-bottom:10px">64 queries · marca "alegra" concentra 74% de clics</div>
       <div style="position:relative; width:100%; height:190px">
         <canvas id="queriesChart"></canvas>
       </div>
@@ -404,9 +406,9 @@
 <!-- FOOTER -->
 <div class="data-note">
   Fuentes: Amplitude · ProjectId 496026 · Cohort VEN: appVersion = VEN o venezuela · excluye @alegra.com · desde 19/05/2026 ·
-  Google Search Console: /venezuela/ + país Venezuela · 87 queries · 244 clics · 950 imp · CTR 25.7% · pos. 1.9 · últimos 3 meses ·
+  Google Search Console: /venezuela/ + país Venezuela · 64 queries · 258 clics · 715 imp · CTR 36.1% · pos. 1.8 · Beta 19/05–01/06 ·
   Amplitude: ac-account-created, ac-onboarding-started, ac-onboarding-finished, eventos de valor · datos al 01/06/2026 ·
-  MQL = ac-onboarding-finished (Sign Up que completa el onboarding — señal de interés, usuario calificado para Growth).
+  MQL = ac-onboarding-finished (Sign Up que completa el onboarding) · PQL = MQL + ≥1 evento de valor en producto.
 </div>
 
 <!-- CHARTS -->
@@ -425,11 +427,11 @@
   new Chart(document.getElementById('funnelChart'), {
     type: 'bar',
     data: {
-      labels: ['Clics landing (SC)', 'Cuentas creadas', 'ONB iniciado', 'MQL (ONB completado)'],
+      labels: ['Clics landing (SC)', 'Cuentas creadas', 'ONB iniciado', 'MQL (ONB completado)', 'PQL (≥1 evento valor)'],
       datasets: [{
-        data: [244, 41, 35, 30],
-        backgroundColor: ['rgba(50,102,173,0.40)','rgba(50,102,173,0.60)','rgba(50,102,173,0.78)','rgba(29,158,117,0.75)'],
-        borderColor: [blue, blue, blue, green],
+        data: [258, 41, 35, 30, 13],
+        backgroundColor: ['rgba(50,102,173,0.35)','rgba(50,102,173,0.55)','rgba(50,102,173,0.72)','rgba(29,158,117,0.75)','rgba(239,159,39,0.70)'],
+        borderColor: [blue, blue, blue, green, warn],
         borderWidth: 0.5, borderRadius: 5,
       }]
     },
@@ -437,7 +439,7 @@
       indexAxis: 'y', responsive: true, maintainAspectRatio: false,
       plugins: {
         legend: { display: false },
-        tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.x} — ${Math.round(ctx.parsed.x/244*100)}% del top` } }
+        tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.x} — ${Math.round(ctx.parsed.x/258*100)}% del top` } }
       },
       scales: {
         x: { ticks: { font: { size: 11 } }, grid: { color: grid }, border: { display: false } },
@@ -474,8 +476,8 @@
   });
 
   // ── SEARCH CONSOLE DAILY CLICS ──
-  const scLabels = ['19/05','20/05','21/05','22/05','23/05','24/05','25/05','26/05','27/05','28/05','29/05','30/05'];
-  const scData   = [6, 12, 31, 27, 11, 11, 16, 27, 25, 37, 25, 9];
+  const scLabels = ['19/05','20/05','21/05','22/05','23/05','24/05','25/05','26/05','27/05','28/05','29/05','30/05','31/05','01/06'];
+  const scData   = [6, 12, 31, 27, 11, 11, 16, 27, 25, 37, 25, 9, 8, 18];
   new Chart(document.getElementById('scDailyChart'), {
     type: 'bar',
     data: {
@@ -525,9 +527,9 @@
   new Chart(document.getElementById('queriesChart'), {
     type: 'bar',
     data: {
-      labels: ['alegra', 'alegra venezuela', 'alegra sist. contable', 'alegra sist. admin.', 'alegra soft. contable'],
+      labels: ['alegra', 'alegra sist. admin.', 'alegra sist. contable', 'alegra venezuela', 'alegra soft. contable'],
       datasets: [{
-        data: [174, 21, 14, 14, 8],
+        data: [191, 16, 14, 10, 9],
         backgroundColor: ['rgba(50,102,173,0.85)','rgba(50,102,173,0.68)','rgba(50,102,173,0.55)','rgba(50,102,173,0.45)','rgba(50,102,173,0.35)'],
         borderColor: blue, borderWidth: 0.5, borderRadius: 4,
       }]
