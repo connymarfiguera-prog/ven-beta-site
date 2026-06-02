@@ -16,11 +16,20 @@
     .subheader { font-size: 12px; color: #73726c; margin-bottom: 16px; }
 
     /* ── Snapshot selector ── */
-    .snapshot-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
-    .snapshot-label { font-size: 11px; font-weight: 600; color: #9e9d98; letter-spacing: 0.07em; text-transform: uppercase; white-space: nowrap; }
-    .snap-btn { font-size: 12px; font-weight: 500; padding: 5px 14px; border-radius: 20px; border: 1px solid #e5e3de; background: #fff; color: #73726c; cursor: pointer; transition: all 0.12s; }
-    .snap-btn:hover { border-color: #3266ad; color: #3266ad; }
-    .snap-btn.active { background: #3266ad; color: #fff; border-color: #3266ad; }
+    .snapshot-bar {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 22px;
+      background: #fff; border: 0.5px solid #e5e3de; border-radius: 10px;
+      padding: 12px 18px; flex-wrap: wrap;
+    }
+    .snapshot-label { font-size: 11px; font-weight: 600; color: #9e9d98; letter-spacing: 0.07em; text-transform: uppercase; white-space: nowrap; margin-right: 4px; }
+    .snap-btns-wrap { display: flex; gap: 6px; flex-wrap: wrap; }
+    .snap-btn {
+      font-size: 13px; font-weight: 500; padding: 6px 18px; border-radius: 20px;
+      border: 1px solid #e5e3de; background: #f5f4f1; color: #73726c;
+      cursor: pointer; transition: all 0.12s;
+    }
+    .snap-btn:hover { border-color: #3266ad; color: #3266ad; background: #fff; }
+    .snap-btn.active { background: #3266ad; color: #fff; border-color: #3266ad; font-weight: 600; }
 
     .section-label { font-size: 10.5px; font-weight: 600; color: #9e9d98; letter-spacing: 0.09em; text-transform: uppercase; margin: 24px 0 10px; }
 
@@ -104,8 +113,8 @@
 
 <!-- SNAPSHOT SELECTOR -->
 <div class="snapshot-bar">
-  <span class="snapshot-label">Snapshot</span>
-  <div id="snapBtns"></div>
+  <span class="snapshot-label">Ver snapshot</span>
+  <div class="snap-btns-wrap" id="snapBtns"></div>
 </div>
 
 <!-- KPIs -->
@@ -477,7 +486,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // Snapshot buttons
   const container = document.getElementById('snapBtns');
-  container.style.cssText = 'display:flex;gap:6px;flex-wrap:wrap';
   DATES.forEach(date => {
     const btn = document.createElement('button');
     btn.className = 'snap-btn';
