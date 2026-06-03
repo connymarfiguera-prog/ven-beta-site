@@ -448,6 +448,8 @@ const SNAPSHOTS = {
 // CONSTANTS
 // ══════════════════════════════════════
 const blue = '#3266ad', green = '#1D9E75', warn = '#EF9F27', red = '#e24b4a', gray = '#b5b3ae', gridC = 'rgba(0,0,0,0.055)';
+const funnelBg     = ['rgba(50,102,173,0.25)','rgba(50,102,173,0.42)','rgba(50,102,173,0.58)','rgba(50,102,173,0.74)','rgba(29,158,117,0.75)','rgba(239,159,39,0.70)'];
+const funnelBorder = [blue, blue, blue, blue, green, warn];
 const DATES = Object.keys(SNAPSHOTS).sort().reverse();
 const charts = {};
 
@@ -593,8 +595,6 @@ window.addEventListener('DOMContentLoaded', () => {
   const d = SNAPSHOTS[latest];
 
   // ── FUNNEL ──
-  const funnelBg = ['rgba(50,102,173,0.25)','rgba(50,102,173,0.42)','rgba(50,102,173,0.58)','rgba(50,102,173,0.74)','rgba(29,158,117,0.75)','rgba(239,159,39,0.70)'];
-  const funnelBorder = [blue, blue, blue, blue, green, warn];
   charts.funnel = new Chart(document.getElementById('funnelChart'), {
     type: 'bar',
     data: {
