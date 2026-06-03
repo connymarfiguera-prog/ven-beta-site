@@ -440,7 +440,86 @@ const SNAPSHOTS = {
       { icon: "🔄", title: "Retención D2 = 18.3% — mejora", body: "D2 sube de 11.1% a 18.3%. D1=0% es inmaduro (usuarios del 01/06 aún en D0 hoy). D5 y D9=16.7% muestran re-engagement espontáneo sin push activo." },
       { icon: "🐛", title: "Bugs reportados (21/05)", body: "<strong>Income:</strong> \"No me permite poner mi factura como pagada\" → <span style=\"color:#856404;font-weight:600\">In progress</span><br><strong>Banks:</strong> \"El saldo de mi banco cambia el valor\" → <span style=\"color:#0D6E4F;font-weight:600\">Resuelto ✓</span>" }
     ],
-    footer: "Amplitude · ProjectId 496026 · Cohort VEN: appVersion = VEN o venezuela · excluye @alegra.com · desde 19/05/2026 · Datos Amplitude al 02/06/2026 · Search Console /venezuela/ + país Venezuela · Beta 19/05–02/06 · 268 clics · 740 imp · CTR 36.2% · pos. 1.8 · 65 queries · MQL = ac-onboarding-finished · PQL = MQL + ≥1 evento de valor en producto (ac-invoice-submitted, ac-contact-created, ac-item-created, bancos, gastos, cotizaciones)."
+    footer: "Amplitude · ProjectId 496026 · Cohort VEN: appVersion = VEN o venezuela · excluye @alegra.com · desde 19/05/2026 · Datos Amplitude al 02/06/2026 · Search Console /venezuela/ + país Venezuela · Beta 19/05–02/06 · 268 clics · 740 imp · CTR 36.2% · pos. 1.8 · 65 queries · MQL = ac-onboarding-finished · PQL = ac-invoice-submitted (definición oficial Alegra)."
+  },
+
+  "2026-06-03": {
+    label: "3 Jun 2026", betaDay: 16,
+    sc: { clics: 299, imp: 795, ctr: "37.6%", pos: "1.73", period: "19/05–03/06", queries: 67, marcaPct: 75 },
+    amp: { cuentas: 47, onbIniciado: 41, mql: 34, pql: 11, retD1: "0%", retD1sub: "D1 inmaduro · D2=18.3%" },
+    cuentasSub: "SC 02/06 actualiz. retroact. 10→31 clics",
+    funnel: {
+      labels: ["SC Clics","CTA clicks","Cuentas","ONB iniciado","MQL","PQL"],
+      vals: [299, 63, 47, 41, 34, 11],
+      convs: [
+        { n: 299,   lbl: "SC Clics" },
+        { pct: "~21%",  clr: "#856404" },
+        { n: 63,    lbl: "CTA clicks" },
+        { pct: "~75%",  clr: "#1D9E75" },
+        { n: 47,    lbl: "Cuentas" },
+        { pct: "87.2%", clr: "#1D9E75" },
+        { n: 41,    lbl: "ONB iniciado" },
+        { pct: "82.9%", clr: "#1D9E75" },
+        { n: 34,    lbl: "MQL" },
+        { pct: "~32%",  clr: "#856404" },
+        { n: 11,    lbl: "PQL" }
+      ]
+    },
+    dailyAccounts: {
+      labels: ["19/05","20/05","21/05","22/05","23/05","24/05","25/05","26/05","27/05","28/05","29/05","30/05","31/05","01/06","02/06","03/06"],
+      data:   [3, 2, 9, 7, 6, 1, 5, 0, 0, 2, 3, 1, 2, 5, 0, 1]
+    },
+    dailyClics: {
+      labels: ["19/05","20/05","21/05","22/05","23/05","24/05","25/05","26/05","27/05","28/05","29/05","30/05","31/05","01/06","02/06","03/06"],
+      data:   [6, 12, 31, 27, 11, 11, 16, 27, 25, 37, 25, 9, 8, 18, 31, 10]
+    },
+    dailyNotes: [
+      { cls: "plateau-note", txt: "⚠️ 0 registros el 26 y 27/05 — caída temporal" },
+      { cls: "good-note",    txt: "✅ SC 02/06 actualizó retroactivamente: 10 → 31 clics" }
+    ],
+    scNotes: [
+      { cls: "good-note", txt: "🔝 28/05 récord: 37 clics · CTR Beta acumulado 37.6%" }
+    ],
+    retention: [
+      { day:"D1", pct:0 },    { day:"D2", pct:18.3 }, { day:"D3", pct:6.7 },
+      { day:"D4", pct:3.3 },  { day:"D5", pct:16.7 }, { day:"D6", pct:6.7 },
+      { day:"D7", pct:0 },    { day:"D8", pct:0 },    { day:"D9", pct:16.7 },
+      { day:"D10", pct:3.3 }, { day:"D11", pct:0 }
+    ],
+    retNote: "D1=0%: usuarios recientes sin D1 completo. D2=18.3% señal de retorno. D5,D9=16.7% re-engagement espontáneo. PQL=11 ✓ coincide con data-dashboard oficial.",
+    modules: {
+      labels: ["Contactos","Ítems","Bancos","Facturas","Gastos","Cotizaciones"],
+      data:   [24, 22, 8, 11, 5, 3]
+    },
+    queries: {
+      labels: ["alegra","alegra sist. admin.","alegra sist. contable","alegra venezuela","alegra soft. contable"],
+      data:   [226, 18, 15, 10, 9]
+    },
+    channels: {
+      total: 47,
+      items: [
+        { label: "Orgánico / Directo",    color: "#3266ad", pct: 85, val: "~40 cuentas" },
+        { label: "IA referral (ChatGPT)", color: "#1D9E75", pct: 7,  val: "3 cuentas"  },
+        { label: "Google Ads (paid)",     color: "#EF9F27", pct: 7,  val: "~4 cuentas" }
+      ],
+      note: "3 usuarios llegaron vía ChatGPT — descubrimiento orgánico por IA, sin inversión."
+    },
+    convTable: [
+      { stage: "Clics landing <code>/venezuela/</code>", vol: "299 clics · 795 imp.", conv: "Base", convCls: "nd", src: "Search Console · Beta 19/05–03/06" },
+      { stage: "Clics en CTA <code>cta-crear-cuenta</code>", vol: "63 clics", conv: "~21% de visitas SC", convCls: "warn", src: "Amplitude · Page Path=/venezuela/ · al 03/06" },
+      { stage: "Cuentas VEN creadas <code>ac-account-created</code>", vol: "47", conv: "~16% de visitas SC", convCls: "warn", src: "Amplitude · al 03/06" },
+      { stage: "Onboarding iniciado <code>ac-onboarding-started</code>", vol: "41", conv: "87.2%", convCls: "good", src: "Amplitude · al 03/06" },
+      { stage: "MQL — ONB completado <code>ac-onboarding-finished</code>", vol: "34", conv: "82.9%", convCls: "good", src: "Amplitude · al 03/06" },
+      { stage: "PQL — <code>ac-invoice-submitted</code>", vol: "11", conv: "~32% de MQL", convCls: "warn", src: "Amplitude · al 03/06" },
+      { stage: "Retención D2", vol: "11 / 60", conv: "18.3%", convCls: "warn", src: "Amplitude · al 03/06" }
+    ],
+    insights: [
+      { icon: "📈", title: "SC 02/06 actualizó: 10 → 31 clics (retroactivo)", body: "El dato de Search Console del 02/06 subió de 10 a 31 clics tras consolidación nocturna. El acumulado Beta sube a 299 clics. CTR alcanza 37.6% — el más alto del Beta." },
+      { icon: "✅", title: "PQL = 11 · coincide con data-dashboard oficial", body: "La definición de PQL = <code>ac-invoice-submitted</code> está alineada con db_amplitude_events.amplitude_pql_events. 11 usuarios han enviado al menos una factura en la Beta." },
+      { icon: "⚠️", title: "Gap de cohorte pendiente de alinear", body: "Data-dashboard Alegra muestra 71 SignUps vs nuestros 47. Misma exclusión de @alegra.com pero cohort filter distinto. MQL: 60 vs 34. Requiere alinear definición de 'versión Venezuela' con equipo de datos." },
+      { icon: "🐛", title: "Bugs reportados (21/05)", body: "<strong>Income:</strong> \"No me permite poner mi factura como pagada\" → <span style=\"color:#856404;font-weight:600\">In progress</span><br><strong>Banks:</strong> \"El saldo de mi banco cambia el valor\" → <span style=\"color:#0D6E4F;font-weight:600\">Resuelto ✓</span>" }
+    ],
+    footer: "Amplitude · ProjectId 496026 · Cohort VEN: appVersion = VEN o venezuela · excluye @alegra.com · desde 19/05/2026 · Datos Amplitude al 03/06/2026 · Search Console /venezuela/ · Beta 19/05–03/06 · 299 clics · 795 imp · CTR 37.6% · pos. 1.73 · 67 queries · MQL = ac-onboarding-finished · PQL = ac-invoice-submitted (definición oficial Alegra) · Gap cohorte: data-dashboard 71 SignUps vs nuestros 47."
   }
 };
 
