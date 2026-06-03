@@ -201,7 +201,7 @@
 <div class="section-label">Análisis y próximos pasos</div>
 <div class="insight-grid" id="insightsGrid"></div>
 <div class="alert" style="margin-top:10px">
-  <p>📊 <strong>Gap de instrumentación:</strong> El evento <code style="font-size:10px">cta-crear-cuenta</code> no está implementado en <code style="font-size:10px">alegra.com/venezuela/</code> — los clics en el CTA no se registran en Amplitude. Instrumentar este evento es la prioridad para medir el top-funnel real (clics → registro).</p>
+  <p>📊 <strong>CTA instrumentado:</strong> <code style="font-size:10px">cta-crear-cuenta</code> sí registra en Amplitude usando el filtro <code style="font-size:10px">[Amplitude] Page Path = /venezuela/</code> — ~23% de los visitantes de la landing hacen clic en "Crear cuenta". <strong>Nota:</strong> la conversión CTA → registro se mide con mayor precisión en el funnel de Amplitude (Funnels tab), donde muestra ~28% en los últimos 30 días.</p>
 </div>
 
 <!-- FOOTER -->
@@ -218,10 +218,13 @@ const SNAPSHOTS = {
     amp: { cuentas: 38, onbIniciado: 33, mql: 28, pql: 12, retD1: "13.3%", retD1sub: "4 / 30 elegibles" },
     cuentasSub: "~17% conv. de clics",
     funnel: {
-      vals: [228, 38, 33, 28, 12],
+      labels: ["SC Clics","CTA clicks","Cuentas","ONB iniciado","MQL","PQL"],
+      vals: [228, 54, 38, 33, 28, 12],
       convs: [
-        { n: 228,   lbl: "Clics Beta" },
-        { pct: "~17%", clr: "#856404" },
+        { n: 228,   lbl: "SC Clics" },
+        { pct: "~24%", clr: "#856404" },
+        { n: 54,    lbl: "CTA clicks" },
+        { pct: "~70%", clr: "#1D9E75" },
         { n: 38,    lbl: "Cuentas" },
         { pct: "86.8%", clr: "#1D9E75" },
         { n: 33,    lbl: "ONB iniciado" },
@@ -267,8 +270,8 @@ const SNAPSHOTS = {
     },
     convTable: [
       { stage: "Clics landing <code>/venezuela/</code>", vol: "228 clics · 926 imp.", conv: "Base", convCls: "nd", src: "Search Console · Beta 19/05–29/05" },
-      { stage: "Clics en CTA", vol: "Sin dato", volGray: true, conv: "N/D — no instrumentado", convCls: "nd", src: "Amplitude: cta-crear-cuenta no dispara desde /venezuela/", srcGray: true },
-      { stage: "Cuentas VEN creadas <code>ac-account-created</code>", vol: "38", conv: "~17% de clics", convCls: "warn", src: "Amplitude · al 29/05" },
+      { stage: "Clics en CTA <code>cta-crear-cuenta</code>", vol: "54 clics", conv: "~24% de visitas SC", convCls: "warn", src: "Amplitude · Page Path=/venezuela/ · al 29/05" },
+      { stage: "Cuentas VEN creadas <code>ac-account-created</code>", vol: "38", conv: "~17% de visitas SC", convCls: "warn", src: "Amplitude · al 29/05" },
       { stage: "Onboarding iniciado <code>ac-onboarding-started</code>", vol: "33", conv: "86.8%", convCls: "good", src: "Amplitude · al 29/05" },
       { stage: "MQL — ONB completado <code>ac-onboarding-finished</code>", vol: "28", conv: "84.8%", convCls: "good", src: "Amplitude · al 29/05" },
       { stage: "PQL — ≥1 evento de valor", vol: "~12", conv: "~43% de MQL", convCls: "warn", src: "Amplitude · al 27/05" },
@@ -289,10 +292,13 @@ const SNAPSHOTS = {
     amp: { cuentas: 41, onbIniciado: 35, mql: 30, pql: 13, retD1: "13.2%", retD1sub: "5 / 38 elegibles" },
     cuentasSub: "Plateau roto — +8 en D10–D13",
     funnel: {
-      vals: [258, 41, 35, 30, 13],
+      labels: ["SC Clics","CTA clicks","Cuentas","ONB iniciado","MQL","PQL"],
+      vals: [258, 61, 41, 35, 30, 13],
       convs: [
-        { n: 258,   lbl: "Clics Beta" },
-        { pct: "~16%", clr: "#856404" },
+        { n: 258,   lbl: "SC Clics" },
+        { pct: "~24%", clr: "#856404" },
+        { n: 61,    lbl: "CTA clicks" },
+        { pct: "~67%", clr: "#1D9E75" },
         { n: 41,    lbl: "Cuentas" },
         { pct: "85.4%", clr: "#1D9E75" },
         { n: 35,    lbl: "ONB iniciado" },
@@ -342,8 +348,8 @@ const SNAPSHOTS = {
     },
     convTable: [
       { stage: "Clics landing <code>/venezuela/</code>", vol: "258 clics · 715 imp.", conv: "Base", convCls: "nd", src: "Search Console · Beta 19/05–01/06" },
-      { stage: "Clics en CTA", vol: "Sin dato", volGray: true, conv: "N/D — no instrumentado", convCls: "nd", src: "Amplitude: cta-crear-cuenta no dispara desde /venezuela/", srcGray: true },
-      { stage: "Cuentas VEN creadas <code>ac-account-created</code>", vol: "41", conv: "~16% de clics", convCls: "warn", src: "Amplitude · al 01/06" },
+      { stage: "Clics en CTA <code>cta-crear-cuenta</code>", vol: "61 clics", conv: "~24% de visitas SC", convCls: "warn", src: "Amplitude · Page Path=/venezuela/ · al 01/06" },
+      { stage: "Cuentas VEN creadas <code>ac-account-created</code>", vol: "41", conv: "~16% de visitas SC", convCls: "warn", src: "Amplitude · al 01/06" },
       { stage: "Onboarding iniciado <code>ac-onboarding-started</code>", vol: "35", conv: "85.4%", convCls: "good", src: "Amplitude · al 01/06" },
       { stage: "MQL — ONB completado <code>ac-onboarding-finished</code>", vol: "30", conv: "85.7%", convCls: "good", src: "Amplitude · al 01/06" },
       { stage: "PQL — ≥1 evento de valor", vol: "~13", conv: "~43% de MQL", convCls: "warn", src: "Amplitude · al 27/05" },
@@ -364,10 +370,13 @@ const SNAPSHOTS = {
     amp: { cuentas: 46, onbIniciado: 40, mql: 33, pql: 25, retD1: "0%", retD1sub: "D1 inmaduro · D2=18.3%" },
     cuentasSub: "+5 en 01/06 (dato retroactivo)",
     funnel: {
-      vals: [268, 46, 40, 33, 25],
+      labels: ["SC Clics","CTA clicks","Cuentas","ONB iniciado","MQL","PQL"],
+      vals: [268, 62, 46, 40, 33, 25],
       convs: [
-        { n: 268,   lbl: "Clics Beta" },
-        { pct: "~17%",  clr: "#856404" },
+        { n: 268,   lbl: "SC Clics" },
+        { pct: "~23%",  clr: "#856404" },
+        { n: 62,    lbl: "CTA clicks" },
+        { pct: "~74%",  clr: "#1D9E75" },
         { n: 46,    lbl: "Cuentas" },
         { pct: "87.0%", clr: "#1D9E75" },
         { n: 40,    lbl: "ONB iniciado" },
@@ -418,8 +427,8 @@ const SNAPSHOTS = {
     },
     convTable: [
       { stage: "Clics landing <code>/venezuela/</code>", vol: "268 clics · 740 imp.", conv: "Base", convCls: "nd", src: "Search Console · Beta 19/05–02/06" },
-      { stage: "Clics en CTA", vol: "Sin dato", volGray: true, conv: "N/D — no instrumentado", convCls: "nd", src: "Amplitude: cta-crear-cuenta no dispara desde /venezuela/", srcGray: true },
-      { stage: "Cuentas VEN creadas <code>ac-account-created</code>", vol: "46", conv: "~17% de clics", convCls: "warn", src: "Amplitude · al 02/06" },
+      { stage: "Clics en CTA <code>cta-crear-cuenta</code>", vol: "62 clics", conv: "~23% de visitas SC", convCls: "warn", src: "Amplitude · Page Path=/venezuela/ · al 02/06" },
+      { stage: "Cuentas VEN creadas <code>ac-account-created</code>", vol: "46", conv: "~17% de visitas SC", convCls: "warn", src: "Amplitude · al 02/06" },
       { stage: "Onboarding iniciado <code>ac-onboarding-started</code>", vol: "40", conv: "87.0%", convCls: "good", src: "Amplitude · al 02/06" },
       { stage: "MQL — ONB completado <code>ac-onboarding-finished</code>", vol: "33", conv: "82.5%", convCls: "good", src: "Amplitude · al 02/06" },
       { stage: "PQL — ≥1 evento de valor <small style=\"color:#9e9d98;font-size:10px\">(Facturas, Contactos, Bancos…)</small>", vol: "~25", conv: "~76% de MQL", convCls: "good", src: "Amplitude · al 02/06" },
@@ -483,8 +492,10 @@ function render(date) {
 
   // Funnel chart
   const fc = charts.funnel;
-  fc.data.labels = ["Clics landing","Cuentas","ONB iniciado","MQL","PQL"];
+  fc.data.labels = d.funnel.labels;
   fc.data.datasets[0].data = d.funnel.vals;
+  fc.data.datasets[0].backgroundColor = funnelBg.slice(0, d.funnel.vals.length);
+  fc.data.datasets[0].borderColor = funnelBorder.slice(0, d.funnel.vals.length);
   fc.update('none');
 
   // Daily accounts chart
@@ -582,14 +593,16 @@ window.addEventListener('DOMContentLoaded', () => {
   const d = SNAPSHOTS[latest];
 
   // ── FUNNEL ──
+  const funnelBg = ['rgba(50,102,173,0.25)','rgba(50,102,173,0.42)','rgba(50,102,173,0.58)','rgba(50,102,173,0.74)','rgba(29,158,117,0.75)','rgba(239,159,39,0.70)'];
+  const funnelBorder = [blue, blue, blue, blue, green, warn];
   charts.funnel = new Chart(document.getElementById('funnelChart'), {
     type: 'bar',
     data: {
-      labels: ["Clics landing","Cuentas","ONB iniciado","MQL","PQL"],
+      labels: d.funnel.labels,
       datasets: [{
         data: d.funnel.vals,
-        backgroundColor: ['rgba(50,102,173,0.35)','rgba(50,102,173,0.55)','rgba(50,102,173,0.72)','rgba(29,158,117,0.75)','rgba(239,159,39,0.70)'],
-        borderColor: [blue, blue, blue, green, warn],
+        backgroundColor: funnelBg.slice(0, d.funnel.vals.length),
+        borderColor: funnelBorder.slice(0, d.funnel.vals.length),
         borderWidth: 0.5, borderRadius: 5
       }]
     },
@@ -597,7 +610,7 @@ window.addEventListener('DOMContentLoaded', () => {
       indexAxis: 'y', responsive: true, maintainAspectRatio: false,
       plugins: {
         legend: { display: false },
-        tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.x} — ${Math.round(ctx.parsed.x / d.funnel.vals[0] * 100)}% del top` } }
+        tooltip: { callbacks: { label: ctx => { const v = charts.funnel.data.datasets[0].data; return ` ${ctx.parsed.x} — ${Math.round(ctx.parsed.x / v[0] * 100)}% del top`; } } }
       },
       scales: {
         x: { ticks: { font: { size: 11 } }, grid: { color: gridC }, border: { display: false } },
