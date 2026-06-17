@@ -911,6 +911,318 @@ const SNAPSHOTS = {
       { icon: "🐛", title: "Bugs reportados (21/05)", body: "<strong>Income:</strong> \"No me permite poner mi factura como pagada\" → <span style=\"color:#856404;font-weight:600\">In progress</span><br><strong>Banks:</strong> \"El saldo de mi banco cambia el valor\" → <span style=\"color:#0D6E4F;font-weight:600\">Resuelto ✓</span>" }
     ],
     footer: "Amplitude · ProjectId 496026 · Cohort VEN: appVersion = VEN o venezuela · excluye @alegra.com · desde 19/05/2026 · Datos Amplitude al 10/06/2026 · Search Console /venezuela/* · Beta 19/05–10/06 · 477 clics · 1.772 imp · CTR 26.9% · pos. 2.2 · 100 queries · MQL/PQL = funnel deduplicado · CTA = cta-crear-cuenta con Page Path CONTAINS /venezuela/ · PQL VEN = ≥1 evento de valor sin FV (acordado David Sánchez 04/06/2026)."
+  },
+
+  "2026-06-11": {
+    label: "11 Jun 2026", betaDay: 24,
+    sc: { clics: 502, imp: 1843, ctr: "27.2%", pos: "2.2", period: "19/05–11/06", queries: 106, marcaPct: 73 },
+    amp: { cuentas: 67, onbIniciado: 57, mql: 123, pql: 42, retD1: "—", retD1sub: "Cohort reciente · datos en consolidación" },
+    cuentasSub: "Jun 11 · datos retroactivos en consolidación",
+    funnel: {
+      labels: ["SC Clics","CTA únicos","Cuentas","ONB iniciado","MQL","PQL VEN"],
+      vals: [502, 89, 67, 57, 123, 42],
+      convs: [
+        { n: 502,   lbl: "SC Clics" },
+        { pct: "~18%",  clr: "#856404" },
+        { n: 89,    lbl: "CTA únicos" },
+        { pct: "~75%",  clr: "#1D9E75" },
+        { n: 67,    lbl: "Cuentas" },
+        { pct: "85.1%", clr: "#1D9E75" },
+        { n: 57,    lbl: "ONB iniciado" },
+        { pct: "acum.", clr: "#3266ad" },
+        { n: 123,   lbl: "MQL" },
+        { pct: "~34%",  clr: "#1D9E75" },
+        { n: 42,    lbl: "PQL VEN" }
+      ]
+    },
+    dailyAccounts: {
+      labels: ["19/05","20/05","21/05","22/05","23/05","24/05","25/05","26/05","27/05","28/05","29/05","30/05","31/05","01/06","02/06","03/06","04/06","05/06","06/06","07/06","08/06","09/06","10/06","11/06"],
+      data:   [3, 2, 9, 7, 6, 1, 5, 0, 0, 2, 3, 1, 2, 5, 0, 3, 4, 1, 4, 0, 2, 3, 3, 1]
+    },
+    dailyClics: {
+      labels: ["19/05","20/05","21/05","22/05","23/05","24/05","25/05","26/05","27/05","28/05","29/05","30/05","31/05","01/06","02/06","03/06","04/06","05/06","06/06","07/06","08/06","09/06","10/06","11/06"],
+      data:   [6, 12, 31, 27, 11, 11, 16, 27, 25, 37, 25, 9, 8, 18, 31, 34, 29, 22, 15, 9, 18, 26, 30, 25]
+    },
+    dailyNotes: [
+      { cls: "good-note",    txt: "✅ 11/06 (jue): CTR 33.8% · posición 1.6 — mejor del Beta" },
+      { cls: "plateau-note", txt: "⚠️ 0 cuentas el 26, 27/05 y 07/06 — caídas de fin de semana" }
+    ],
+    scNotes: [
+      { cls: "good-note", txt: "🔝 11/06: 25 clics · pos. 1.6 · CTR 33.8% — récord de posición" }
+    ],
+    retention: [
+      { day:"D1", pct:0 },    { day:"D2", pct:18.3 }, { day:"D3", pct:6.7 },
+      { day:"D4", pct:3.3 },  { day:"D5", pct:16.7 }, { day:"D6", pct:6.7 },
+      { day:"D7", pct:0 },    { day:"D8", pct:0 },    { day:"D9", pct:16.7 },
+      { day:"D10", pct:3.3 }, { day:"D11", pct:0 },   { day:"D12", pct:0 }
+    ],
+    retNote: "Semana 4 completa. Cohort inicial muestra re-engagement espontáneo en D5 y D9. Cohortes de junio en consolidación.",
+    modules: {
+      labels: ["Contactos","Ítems","Bancos","Facturas","Gastos","Cotizaciones"],
+      data:   [36, 34, 13, 22, 11, 6]
+    },
+    queries: {
+      labels: ["alegra","alegra sist. admin.","alegra sist. contable","alegra soft. contable","alegra venezuela"],
+      data:   [368, 33, 26, 18, 15]
+    },
+    channels: {
+      total: 67,
+      items: [
+        { label: "Orgánico / Directo",    color: "#3266ad", pct: 84, val: "~56 cuentas" },
+        { label: "IA referral (ChatGPT)", color: "#1D9E75", pct: 5,  val: "3 cuentas"  },
+        { label: "Google Ads (paid)",     color: "#EF9F27", pct: 11, val: "~8 cuentas" }
+      ],
+      note: "3 usuarios llegaron vía ChatGPT — descubrimiento orgánico por IA, sin inversión."
+    },
+    convTable: [
+      { stage: "Clics landing <code>/venezuela/*</code>", vol: "502 clics · 1.843 imp.", conv: "Base", convCls: "nd", src: "Search Console · Beta 19/05–11/06" },
+      { stage: "CTA únicos <code>cta-crear-cuenta</code>", vol: "89 usuarios", conv: "~18% de visitas SC", convCls: "warn", src: "Amplitude · Page Path CONTAINS /venezuela/ · funnel deduplicado" },
+      { stage: "Cuentas VEN creadas <code>ac-account-created</code>", vol: "67", conv: "~75% de CTA", convCls: "good", src: "Amplitude · al 11/06" },
+      { stage: "Onboarding iniciado <code>ac-onboarding-started</code>", vol: "57", conv: "85.1%", convCls: "good", src: "Amplitude · al 11/06" },
+      { stage: "MQL <code>ac-onboarding-finished + backend</code>", vol: "123", conv: "acum. desde 19/05", convCls: "nd", src: "Amplitude · funnel deduplicado · al 11/06" },
+      { stage: "PQL VEN — ≥1 evento de valor <small style=\"color:#9e9d98;font-size:10px\">(contactos, ítems, cotizaciones, bancos…)</small>", vol: "42", conv: "~34% de MQL", convCls: "good", src: "Amplitude · funnel deduplicado · al 11/06" }
+    ],
+    insights: [
+      { icon: "🎯", title: "PQL VEN: 42/100 (42%) · Semana 4 cierra fuerte", body: "42 PQL en 24 días de Beta. La semana 4 (08–11/06) sumó +2 PQL, ritmo de ~2/día sostenido. En la semana 5 se proyectan otros 10, acercando el total a los 52 PQL hacia el 20/06." },
+      { icon: "📈", title: "89 CTA únicos · 67 cuentas (75% conversión CTA→Cuenta)", body: "La conversión CTA→Cuenta se mantiene estable en 75%. El incremento de CTA (89 vs 87 el 10/06) muestra tracción orgánica constante." },
+      { icon: "🔝", title: "Posición media 1.6 en Jun 11 — récord del Beta", body: "El 11/06 Alegra VEN apareció en posición 1.6 con CTR 33.8%. El posicionamiento orgánico mejora consistentemente semana a semana." },
+      { icon: "📊", title: "ONB → MQL: 57 vs 67 cuentas (85%)", body: "85% de las cuentas inician onboarding. MQL=123 supera a las cuentas (67) porque incluye usuarios VEN registrados antes del 19/05 que completaron onboarding." }
+    ],
+    footer: "Amplitude · ProjectId 496026 · Cohort VEN: appVersion = VEN o venezuela · excluye @alegra.com · desde 19/05/2026 · Datos Amplitude al 11/06/2026 · Search Console /venezuela/* · Beta 19/05–11/06 · 502 clics · 1.843 imp · CTR 27.2% · pos. 2.2 · 106 queries · MQL/PQL = funnel deduplicado · PQL VEN = ≥1 evento de valor (ac-contact-created, ac-item-created, ac-estimate-created, ac-invoice-submitted, ac-bill-created, ac-transaction-in/out-created)."
+  },
+
+  "2026-06-12": {
+    label: "12 Jun 2026", betaDay: 25,
+    sc: { clics: 527, imp: 1926, ctr: "27.4%", pos: "2.2", period: "19/05–12/06", queries: 110, marcaPct: 74 },
+    amp: { cuentas: 67, onbIniciado: 57, mql: 124, pql: 42, retD1: "—", retD1sub: "Cohort reciente · datos en consolidación" },
+    cuentasSub: "Jun 12 · puede consolidar retroactivo",
+    funnel: {
+      labels: ["SC Clics","CTA únicos","Cuentas","ONB iniciado","MQL","PQL VEN"],
+      vals: [527, 92, 67, 57, 124, 42],
+      convs: [
+        { n: 527,   lbl: "SC Clics" },
+        { pct: "~17%",  clr: "#856404" },
+        { n: 92,    lbl: "CTA únicos" },
+        { pct: "~73%",  clr: "#1D9E75" },
+        { n: 67,    lbl: "Cuentas" },
+        { pct: "85.1%", clr: "#1D9E75" },
+        { n: 57,    lbl: "ONB iniciado" },
+        { pct: "acum.", clr: "#3266ad" },
+        { n: 124,   lbl: "MQL" },
+        { pct: "~34%",  clr: "#1D9E75" },
+        { n: 42,    lbl: "PQL VEN" }
+      ]
+    },
+    dailyAccounts: {
+      labels: ["19/05","20/05","21/05","22/05","23/05","24/05","25/05","26/05","27/05","28/05","29/05","30/05","31/05","01/06","02/06","03/06","04/06","05/06","06/06","07/06","08/06","09/06","10/06","11/06","12/06"],
+      data:   [3, 2, 9, 7, 6, 1, 5, 0, 0, 2, 3, 1, 2, 5, 0, 3, 4, 1, 4, 0, 2, 3, 3, 1, 0]
+    },
+    dailyClics: {
+      labels: ["19/05","20/05","21/05","22/05","23/05","24/05","25/05","26/05","27/05","28/05","29/05","30/05","31/05","01/06","02/06","03/06","04/06","05/06","06/06","07/06","08/06","09/06","10/06","11/06","12/06"],
+      data:   [6, 12, 31, 27, 11, 11, 16, 27, 25, 37, 25, 9, 8, 18, 31, 34, 29, 22, 15, 9, 18, 26, 30, 25, 25]
+    },
+    dailyNotes: [
+      { cls: "good-note",    txt: "✅ 12/06 (vie): 92 CTA únicos · crecimiento semanal sostenido" },
+      { cls: "plateau-note", txt: "⚠️ 0 nuevas cuentas el 12/06 — dato aún inmaduro o viernes quieto" }
+    ],
+    scNotes: [
+      { cls: "good-note", txt: "🔝 CTR 27.4% · 25 clics · semana 4 cierra con buen ritmo" }
+    ],
+    retention: [
+      { day:"D1", pct:0 },    { day:"D2", pct:18.3 }, { day:"D3", pct:6.7 },
+      { day:"D4", pct:3.3 },  { day:"D5", pct:16.7 }, { day:"D6", pct:6.7 },
+      { day:"D7", pct:0 },    { day:"D8", pct:0 },    { day:"D9", pct:16.7 },
+      { day:"D10", pct:3.3 }, { day:"D11", pct:0 },   { day:"D12", pct:0 }
+    ],
+    retNote: "Semana 4 completa. Cohortes de junio en período de maduración — D2 pendiente de cierre para cohorts 06/06+.",
+    modules: {
+      labels: ["Contactos","Ítems","Bancos","Facturas","Gastos","Cotizaciones"],
+      data:   [36, 34, 13, 22, 11, 6]
+    },
+    queries: {
+      labels: ["alegra","alegra sist. admin.","alegra sist. contable","alegra soft. contable","alegra venezuela"],
+      data:   [390, 34, 26, 18, 15]
+    },
+    channels: {
+      total: 67,
+      items: [
+        { label: "Orgánico / Directo",    color: "#3266ad", pct: 84, val: "~56 cuentas" },
+        { label: "IA referral (ChatGPT)", color: "#1D9E75", pct: 5,  val: "3 cuentas"  },
+        { label: "Google Ads (paid)",     color: "#EF9F27", pct: 11, val: "~8 cuentas" }
+      ],
+      note: "3 usuarios llegaron vía ChatGPT — descubrimiento orgánico por IA, sin inversión."
+    },
+    convTable: [
+      { stage: "Clics landing <code>/venezuela/*</code>", vol: "527 clics · 1.926 imp.", conv: "Base", convCls: "nd", src: "Search Console · Beta 19/05–12/06" },
+      { stage: "CTA únicos <code>cta-crear-cuenta</code>", vol: "92 usuarios", conv: "~17% de visitas SC", convCls: "warn", src: "Amplitude · Page Path CONTAINS /venezuela/ · funnel deduplicado" },
+      { stage: "Cuentas VEN creadas <code>ac-account-created</code>", vol: "67", conv: "~73% de CTA", convCls: "good", src: "Amplitude · al 12/06" },
+      { stage: "Onboarding iniciado <code>ac-onboarding-started</code>", vol: "57", conv: "85.1%", convCls: "good", src: "Amplitude · al 12/06" },
+      { stage: "MQL <code>ac-onboarding-finished + backend</code>", vol: "124", conv: "acum. desde 19/05", convCls: "nd", src: "Amplitude · funnel deduplicado · al 12/06" },
+      { stage: "PQL VEN — ≥1 evento de valor <small style=\"color:#9e9d98;font-size:10px\">(contactos, ítems, cotizaciones, bancos…)</small>", vol: "42", conv: "~34% de MQL", convCls: "good", src: "Amplitude · funnel deduplicado · al 12/06" }
+    ],
+    insights: [
+      { icon: "📊", title: "92 CTA únicos — +3 vs día anterior (semana 5 inicia)", body: "92 usuarios únicos hicieron clic en 'Crear cuenta' desde la landing VEN. La tasa CTA→Cuenta bajó levemente a 73% (67/92) vs 75% anterior. El incremento de CTA sin nuevas cuentas puede reflejar datos aún inmaduros del viernes." },
+      { icon: "🎯", title: "42 PQL VEN · 67 cuentas — 62.7% activación", body: "62.7% de las cuentas creadas realizaron al menos 1 acción de valor. Alta tasa de activación — señal de calidad del cohort VEN." },
+      { icon: "📈", title: "MQL 124 · ritmo +1/día en junio", body: "124 usuarios completaron el onboarding VEN acumulado. El ritmo de +1 MQL/día en junio refleja crecimiento moderado pero sostenido." },
+      { icon: "🏁", title: "Fin de semana 4 · inicio de semana 5", body: "25 días de Beta. Semana 4 cierra con 42 PQL y 92 CTA. Semana 5 (15–20/06) arranca el lunes con acumulación de actividad del fin de semana." }
+    ],
+    footer: "Amplitude · ProjectId 496026 · Cohort VEN: appVersion = VEN o venezuela · excluye @alegra.com · desde 19/05/2026 · Datos Amplitude al 12/06/2026 · Search Console /venezuela/* · Beta 19/05–12/06 · 527 clics · 1.926 imp · CTR 27.4% · pos. 2.2 · 110 queries · MQL/PQL = funnel deduplicado."
+  },
+
+  "2026-06-15": {
+    label: "15 Jun 2026", betaDay: 28,
+    sc: { clics: 568, imp: 2136, ctr: "26.6%", pos: "2.2", period: "19/05–15/06", queries: 124, marcaPct: 74 },
+    amp: { cuentas: 74, onbIniciado: 60, mql: 135, pql: 44, retD1: "—", retD1sub: "Datos Jun 15 incompletos · consolidarán mañana" },
+    cuentasSub: "Jun 13–15 consolidados · dato Jun 15 puede variar",
+    funnel: {
+      labels: ["SC Clics","CTA únicos","Cuentas","ONB iniciado","MQL","PQL VEN"],
+      vals: [568, 104, 74, 60, 135, 44],
+      convs: [
+        { n: 568,   lbl: "SC Clics" },
+        { pct: "~18%",  clr: "#856404" },
+        { n: 104,   lbl: "CTA únicos" },
+        { pct: "~71%",  clr: "#856404" },
+        { n: 74,    lbl: "Cuentas" },
+        { pct: "81.1%", clr: "#1D9E75" },
+        { n: 60,    lbl: "ONB iniciado" },
+        { pct: "acum.", clr: "#3266ad" },
+        { n: 135,   lbl: "MQL" },
+        { pct: "~33%",  clr: "#1D9E75" },
+        { n: 44,    lbl: "PQL VEN" }
+      ]
+    },
+    dailyAccounts: {
+      labels: ["19/05","20/05","21/05","22/05","23/05","24/05","25/05","26/05","27/05","28/05","29/05","30/05","31/05","01/06","02/06","03/06","04/06","05/06","06/06","07/06","08/06","09/06","10/06","11/06","12/06","13/06","14/06","15/06"],
+      data:   [3, 2, 9, 7, 6, 1, 5, 0, 0, 2, 3, 1, 2, 5, 0, 3, 4, 1, 4, 0, 2, 3, 3, 1, 0, 0, 0, 7]
+    },
+    dailyClics: {
+      labels: ["19/05","20/05","21/05","22/05","23/05","24/05","25/05","26/05","27/05","28/05","29/05","30/05","31/05","01/06","02/06","03/06","04/06","05/06","06/06","07/06","08/06","09/06","10/06","11/06","12/06","13/06","14/06","15/06"],
+      data:   [6, 12, 31, 27, 11, 11, 16, 27, 25, 37, 25, 9, 8, 18, 31, 34, 29, 22, 15, 9, 18, 26, 30, 25, 25, 11, 5, 25]
+    },
+    dailyNotes: [
+      { cls: "good-note",    txt: "✅ 15/06 (lun): 7 nuevas cuentas · acumulación del finde de semana" },
+      { cls: "plateau-note", txt: "⚠️ 13/06 (sáb): 11 clics, 0 cuentas · 14/06 (dom): 5 clics, 0 cuentas" }
+    ],
+    scNotes: [
+      { cls: "good-note", txt: "🔝 25 clics el lunes 15/06 · 5 semanas completas del Beta" }
+    ],
+    retention: [
+      { day:"D1", pct:0 },    { day:"D2", pct:18.3 }, { day:"D3", pct:6.7 },
+      { day:"D4", pct:3.3 },  { day:"D5", pct:16.7 }, { day:"D6", pct:6.7 },
+      { day:"D7", pct:0 },    { day:"D8", pct:0 },    { day:"D9", pct:16.7 },
+      { day:"D10", pct:3.3 }, { day:"D11", pct:0 },   { day:"D12", pct:0 }
+    ],
+    retNote: "Cohort inicial muestra re-engagement espontáneo. Cohortes de junio (semana 2+) en maduración. Datos Jun 15 marcados como incompletos en Amplitude.",
+    modules: {
+      labels: ["Contactos","Ítems","Bancos","Facturas","Gastos","Cotizaciones"],
+      data:   [37, 35, 13, 23, 11, 7]
+    },
+    queries: {
+      labels: ["alegra","alegra sist. admin.","alegra sist. contable","alegra soft. contable","alegra venezuela"],
+      data:   [419, 38, 28, 20, 16]
+    },
+    channels: {
+      total: 74,
+      items: [
+        { label: "Orgánico / Directo",    color: "#3266ad", pct: 84, val: "~62 cuentas" },
+        { label: "IA referral (ChatGPT)", color: "#1D9E75", pct: 4,  val: "3 cuentas"  },
+        { label: "Google Ads (paid)",     color: "#EF9F27", pct: 12, val: "~9 cuentas" }
+      ],
+      note: "3 usuarios llegaron vía ChatGPT — descubrimiento orgánico por IA, sin inversión."
+    },
+    convTable: [
+      { stage: "Clics landing <code>/venezuela/*</code>", vol: "568 clics · 2.136 imp.", conv: "Base", convCls: "nd", src: "Search Console · Beta 19/05–15/06" },
+      { stage: "CTA únicos <code>cta-crear-cuenta</code>", vol: "104 usuarios", conv: "~18% de visitas SC", convCls: "warn", src: "Amplitude · Page Path CONTAINS /venezuela/ · funnel deduplicado" },
+      { stage: "Cuentas VEN creadas <code>ac-account-created</code>", vol: "74", conv: "~71% de CTA", convCls: "warn", src: "Amplitude · al 15/06 (datos preliminares)" },
+      { stage: "Onboarding iniciado <code>ac-onboarding-started</code>", vol: "60", conv: "81.1%", convCls: "good", src: "Amplitude · al 15/06" },
+      { stage: "MQL <code>ac-onboarding-finished + backend</code>", vol: "135", conv: "acum. desde 19/05", convCls: "nd", src: "Amplitude · funnel deduplicado · al 15/06" },
+      { stage: "PQL VEN — ≥1 evento de valor <small style=\"color:#9e9d98;font-size:10px\">(contactos, ítems, cotizaciones, bancos…)</small>", vol: "44", conv: "~33% de MQL", convCls: "good", src: "Amplitude · funnel deduplicado · al 15/06" }
+    ],
+    insights: [
+      { icon: "📈", title: "74 cuentas · +7 el lunes 15/06 (acumulación finde)", body: "El patrón de acumulación de fin de semana se confirma: 0 cuentas sáb/dom, 7 el lunes 15/06. Es el mayor salto de lunes del Beta — buena señal de crecimiento de la semana 5." },
+      { icon: "🎯", title: "PQL VEN: 44/100 (44%) · semana 5 arranca", body: "44 PQL en 28 días. El ritmo ~1.5/día en semana 5 (sáb/dom sin actividad) proyecta llegar a 50 PQL hacia el 18–19/06. Meta 100 PQL: agosto sigue siendo la proyección." },
+      { icon: "📊", title: "104 CTA únicos — hito relevante", body: "Primer snapshot con más de 100 usuarios únicos que hicieron clic en 'Crear cuenta'. CTA→Cuenta bajó a 71% (74/104) vs 75% histórico — a monitorear si es tendencia o dato de consolidación." },
+      { icon: "⚠️", title: "Datos Jun 15 preliminares — posible actualización", body: "Amplitude marcó Jun 15 como 'Is complete: false'. Los conteos (74 cuentas, 135 MQL, 44 PQL) pueden incrementar marginalmente en las próximas 24h por retroactividad." }
+    ],
+    footer: "Amplitude · ProjectId 496026 · Cohort VEN: appVersion = VEN o venezuela · excluye @alegra.com · desde 19/05/2026 · Datos Amplitude al 15/06/2026 (parciales) · Search Console /venezuela/* · Beta 19/05–15/06 · 568 clics · 2.136 imp · CTR 26.6% · pos. 2.2 · 124 queries · MQL/PQL = funnel deduplicado."
+  },
+
+  "2026-06-16": {
+    label: "16 Jun 2026", betaDay: 29,
+    sc: { clics: 596, imp: 2241, ctr: "26.6%", pos: "2.2", period: "19/05–16/06", queries: 128, marcaPct: 74 },
+    amp: { cuentas: 74, onbIniciado: 60, mql: 139, pql: 48, retD1: "—", retD1sub: "Datos Jun 16 incompletos · consolidarán mañana" },
+    cuentasSub: "Jun 16 puede actualizar retroactivo mañana (17/06)",
+    funnel: {
+      labels: ["SC Clics","CTA únicos","Cuentas","ONB iniciado","MQL","PQL VEN"],
+      vals: [596, 107, 74, 60, 139, 48],
+      convs: [
+        { n: 596,   lbl: "SC Clics" },
+        { pct: "~18%",  clr: "#856404" },
+        { n: 107,   lbl: "CTA únicos" },
+        { pct: "~69%",  clr: "#856404" },
+        { n: 74,    lbl: "Cuentas" },
+        { pct: "81.1%", clr: "#1D9E75" },
+        { n: 60,    lbl: "ONB iniciado" },
+        { pct: "acum.", clr: "#3266ad" },
+        { n: 139,   lbl: "MQL" },
+        { pct: "~35%",  clr: "#1D9E75" },
+        { n: 48,    lbl: "PQL VEN" }
+      ]
+    },
+    dailyAccounts: {
+      labels: ["19/05","20/05","21/05","22/05","23/05","24/05","25/05","26/05","27/05","28/05","29/05","30/05","31/05","01/06","02/06","03/06","04/06","05/06","06/06","07/06","08/06","09/06","10/06","11/06","12/06","13/06","14/06","15/06","16/06"],
+      data:   [3, 2, 9, 7, 6, 1, 5, 0, 0, 2, 3, 1, 2, 5, 0, 3, 4, 1, 4, 0, 2, 3, 3, 1, 0, 0, 0, 7, 0]
+    },
+    dailyClics: {
+      labels: ["19/05","20/05","21/05","22/05","23/05","24/05","25/05","26/05","27/05","28/05","29/05","30/05","31/05","01/06","02/06","03/06","04/06","05/06","06/06","07/06","08/06","09/06","10/06","11/06","12/06","13/06","14/06","15/06","16/06"],
+      data:   [6, 12, 31, 27, 11, 11, 16, 27, 25, 37, 25, 9, 8, 18, 31, 34, 29, 22, 15, 9, 18, 26, 30, 25, 25, 11, 5, 25, 28]
+    },
+    dailyNotes: [
+      { cls: "good-note",    txt: "✅ 16/06 (mar): 28 clics SC · datos Amplitude en consolidación" },
+      { cls: "plateau-note", txt: "⚠️ 0 cuentas el 16/06 — dato aún inmaduro (medido hoy 17/06)" }
+    ],
+    scNotes: [
+      { cls: "good-note", txt: "🔝 16/06: 28 clics · CTR 26.7% · inicio de semana 5 fuerte" }
+    ],
+    retention: [
+      { day:"D1", pct:0 },    { day:"D2", pct:18.3 }, { day:"D3", pct:6.7 },
+      { day:"D4", pct:3.3 },  { day:"D5", pct:16.7 }, { day:"D6", pct:6.7 },
+      { day:"D7", pct:0 },    { day:"D8", pct:0 },    { day:"D9", pct:16.7 },
+      { day:"D10", pct:3.3 }, { day:"D11", pct:0 },   { day:"D12", pct:0 }
+    ],
+    retNote: "Semana 5 en curso. Datos Jun 15–16 preliminares (Is complete: false). Cohortes de junio en maduración.",
+    modules: {
+      labels: ["Contactos","Ítems","Bancos","Facturas","Gastos","Cotizaciones"],
+      data:   [41, 38, 14, 25, 12, 7]
+    },
+    queries: {
+      labels: ["alegra","alegra sist. admin.","alegra sist. contable","alegra soft. contable","alegra venezuela"],
+      data:   [438, 42, 28, 23, 17]
+    },
+    channels: {
+      total: 74,
+      items: [
+        { label: "Orgánico / Directo",    color: "#3266ad", pct: 84, val: "~62 cuentas" },
+        { label: "IA referral (ChatGPT)", color: "#1D9E75", pct: 4,  val: "3 cuentas"  },
+        { label: "Google Ads (paid)",     color: "#EF9F27", pct: 12, val: "~9 cuentas" }
+      ],
+      note: "3 usuarios llegaron vía ChatGPT — descubrimiento orgánico por IA, sin inversión."
+    },
+    convTable: [
+      { stage: "Clics landing <code>/venezuela/*</code>", vol: "596 clics · 2.241 imp.", conv: "Base", convCls: "nd", src: "Search Console · Beta 19/05–16/06" },
+      { stage: "CTA únicos <code>cta-crear-cuenta</code>", vol: "107 usuarios", conv: "~18% de visitas SC", convCls: "warn", src: "Amplitude · Page Path CONTAINS /venezuela/ · funnel deduplicado" },
+      { stage: "Cuentas VEN creadas <code>ac-account-created</code>", vol: "74", conv: "~69% de CTA", convCls: "warn", src: "Amplitude · al 16/06 (datos preliminares)" },
+      { stage: "Onboarding iniciado <code>ac-onboarding-started</code>", vol: "60", conv: "81.1%", convCls: "good", src: "Amplitude · al 16/06" },
+      { stage: "MQL <code>ac-onboarding-finished + backend</code>", vol: "139", conv: "acum. desde 19/05", convCls: "nd", src: "Amplitude · funnel deduplicado · al 16/06" },
+      { stage: "PQL VEN — ≥1 evento de valor <small style=\"color:#9e9d98;font-size:10px\">(contactos, ítems, cotizaciones, bancos…)</small>", vol: "48", conv: "~35% de MQL", convCls: "good", src: "Amplitude · funnel deduplicado · al 16/06" }
+    ],
+    insights: [
+      { icon: "🎯", title: "PQL VEN: 48/100 (48%) — casi la mitad del objetivo", body: "48 PQL en 29 días. La semana 5 arrancó con +4 PQL adicionales (15–16/06 vs 12/06). A este ritmo de ~2.5/día en días laborables, los 50 PQL se alcanzan esta semana." },
+      { icon: "📈", title: "MQL 139 · +15 en 4 días de semana 5", body: "El MQL creció +15 en 4 días (12–16/06: de 124 a 139). Ritmo de ~3.75 MQL/día en semana 5 — el más alto del Beta. Incluye retroactividad de onboarding-finished-backend." },
+      { icon: "📊", title: "107 CTA únicos · 596 clics acumulados", body: "Beta supera los 100 CTA únicos y los 590 clics de SC. La conversión CTA→Cuenta bajó a 69% (74/107) — puede reflejar datos de Jun 15–16 aún incompletos en Amplitude." },
+      { icon: "⚠️", title: "Datos Jun 15–16 preliminares", body: "Amplitude marcó Jun 15 y Jun 16 como 'Is complete: false'. Los valores de cuentas (74), MQL (139) y PQL (48) pueden incrementar cuando consolide el retroactivo. Confirmar snapshot mañana 17/06." }
+    ],
+    footer: "Amplitude · ProjectId 496026 · Cohort VEN: appVersion = VEN o venezuela · excluye @alegra.com · desde 19/05/2026 · Datos Amplitude al 16/06/2026 (parciales) · Search Console /venezuela/* · Beta 19/05–16/06 · 596 clics · 2.241 imp · CTR 26.6% · pos. 2.2 · 128 queries · MQL/PQL = funnel deduplicado · PQL VEN = ≥1 evento de valor (ac-contact-created, ac-item-created, ac-estimate-created, ac-invoice-submitted, ac-bill-created, ac-transaction-in/out-created)."
   }
 };
 
