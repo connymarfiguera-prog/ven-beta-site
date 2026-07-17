@@ -78,6 +78,18 @@
     .ret-cell .pct.low  { background: #FDDEDE; color: #9B1515; }
     .ret-cell .pct.zero { background: #f0efeb; color: #b5b3ae; }
 
+    .ret-monthly { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+    .ret-m-row { display: flex; align-items: center; gap: 14px; padding: 9px 12px; background: #f8f7f4; border-radius: 8px; }
+    .ret-m-name { font-size: 12px; font-weight: 600; color: #1a1a1a; min-width: 90px; }
+    .ret-m-count { font-size: 11px; color: #9e9d98; min-width: 54px; }
+    .ret-m-cell { display: flex; flex-direction: column; align-items: center; min-width: 56px; }
+    .ret-m-lbl { font-size: 10px; color: #9e9d98; margin-bottom: 3px; }
+    .ret-m-val { font-size: 12px; font-weight: 600; padding: 3px 8px; border-radius: 5px; }
+    .ret-m-val.pos  { background: #FEF3CD; color: #856404; }
+    .ret-m-val.high { background: #D1F5E8; color: #0D6E4F; }
+    .ret-m-val.zero { background: #f0efeb; color: #b5b3ae; }
+    .ret-m-val.nd   { background: #f0efeb; color: #b5b3ae; font-style: italic; }
+
     .channel-list { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
     .channel-row  { display: flex; align-items: center; gap: 10px; }
     .channel-label { font-size: 12px; color: #1a1a1a; min-width: 130px; }
@@ -130,7 +142,7 @@
   <div class="kpi"><div class="kpi-label">Cuentas VEN creadas</div><div class="kpi-val" id="kCuentas"></div><div class="kpi-sub" id="kCuentasSub"></div></div>
   <div class="kpi"><div class="kpi-label">MQL (ONB completado)</div><div class="kpi-val" id="kMql"></div><div class="kpi-sub good">finished + finished-backend</div></div>
   <div class="kpi"><div class="kpi-label">PQL VEN (≥1 evento valor)</div><div class="kpi-val" id="kPql"></div><div class="kpi-sub">contactos, ítems, cotizan…</div></div>
-  <div class="kpi"><div class="kpi-label">Retención D1</div><div class="kpi-val" id="kRetD1"></div><div class="kpi-sub bad" id="kRetD1Sub"></div></div>
+  <div class="kpi"><div class="kpi-label" id="kRetD1Label">Retención D1</div><div class="kpi-val" id="kRetD1"></div><div class="kpi-sub" id="kRetD1Sub"></div></div>
 </div>
 
 <!-- FUNNEL -->
@@ -159,10 +171,10 @@
 </div>
 
 <!-- RETENCIÓN -->
-<div class="section-label">Retención del cohort Beta — método N-day</div>
+<div class="section-label" id="retSectionLabel">Retención del cohort Beta — método N-day</div>
 <div class="card" style="padding-bottom:16px">
-  <div style="font-size:11px;color:#73726c;margin-bottom:12px">Usuarios que volvieron al producto N días después de crear su cuenta. Cohort: ac-account-created · return event: cualquier actividad.</div>
-  <div class="ret-row" id="retRow"></div>
+  <div style="font-size:11px;color:#73726c;margin-bottom:12px" id="retDesc">Usuarios que volvieron al producto N días después de crear su cuenta. Cohort: ac-account-created · return event: cualquier actividad.</div>
+  <div id="retRow"></div>
   <div style="font-size:11px;color:#9e9d98;margin-top:10px" id="retNote"></div>
 </div>
 
@@ -1228,7 +1240,7 @@ const SNAPSHOTS = {
   "2026-06-18": {
     label: "18 Jun 2026 · Mes 1", betaDay: 31,
     sc: { clics: 662, imp: 2508, ctr: "26.4%", pos: "2.3", period: "19/05–18/06", queries: 134, marcaPct: 74 },
-    amp: { cuentas: 77, onbIniciado: 61, mql: 154, pql: 53, retD1: "7.0%", retD1sub: "Ret. rolling M1 · cohorte Mayo · 3/43 cuentas activas en D30–D60" },
+    amp: { cuentas: 77, onbIniciado: 61, mql: 154, pql: 53, retD1: "7.0%", retD1Label: "Retención M1", retD1sub: "Mayo: 3/43 cuentas · rolling D30–D60", retMode: "monthly" },
     cuentasSub: "77 cuentas VEN · Mes 1 completo (31 días)",
     funnel: {
       labels: ["SC Clics","CTA únicos","Cuentas","ONB iniciado","MQL","PQL VEN"],
@@ -1263,9 +1275,8 @@ const SNAPSHOTS = {
       { cls: "good-note", txt: "🔝 Mes 1 SC: 662 clics · CTR 26.4% · pos. 2.3 · MarcaPct 74% (488/662 clics 'alegra')" }
     ],
     retention: [
-      { day:"M1 May", pct: 7.0 },
-      { day:"M1 Jun", pct: 0 },
-      { day:"M2 May", pct: 0 }
+      { cohort: "Mayo",  cuentas: 43, m1: 7.0,  m2: null, note: "3/43 activas en D30–D60 · dato retroactivo al 17/07" },
+      { cohort: "Junio", cuentas: 35, m1: null,  m2: null, note: "M1 aún no alcanzó D30 al 18/06" }
     ],
     retNote: "Retención rolling mensual (chart e8nmj9st) · Cohorte Mayo (43 ctas): M1 = 7.0% — 3 cuentas activas en D30–D60 (dato retroactivo al 17/07) · Cohorte Jun 1–18 (35 ctas): M1 aún no alcanzó D30 al cierre del Mes 1.",
     modules: {
@@ -1305,7 +1316,7 @@ const SNAPSHOTS = {
   "2026-07-17": {
     label: "17 Jul 2026 · Mes 2 (acum.)", betaDay: 60,
     sc: { clics: 1250, imp: 4952, ctr: "25.2%", pos: "2.4", period: "19/05–17/07", queries: 226, marcaPct: 73 },
-    amp: { cuentas: 128, onbIniciado: 105, mql: 282, pql: 92, retD1: "7.0%", retD1sub: "Ret. rolling M1 · cohorte Mayo (3/43) · Jun 49 ctas incompleto al 17/07" },
+    amp: { cuentas: 128, onbIniciado: 105, mql: 282, pql: 92, retD1: "7.0%", retD1Label: "Retención M1", retD1sub: "Mayo: 3/43 cuentas · Junio: pendiente agosto", retMode: "monthly" },
     cuentasSub: "128 cuentas VEN · 60 días de beta (19/05–17/07)",
     funnel: {
       labels: ["SC Clics","CTA únicos","Cuentas","ONB iniciado","MQL","PQL VEN"],
@@ -1341,9 +1352,9 @@ const SNAPSHOTS = {
       { cls: "good-note",    txt: "📈 1.250 clics totales · 4.952 imp · MarcaPct 73% (909/1.250 clics 'alegra') · 226 queries" }
     ],
     retention: [
-      { day:"M1 May", pct: 7.0 },
-      { day:"M2 May", pct: 0 },
-      { day:"M1 Jun", pct: 0 }
+      { cohort: "Mayo",  cuentas: 43, m1: 7.0,  m2: 0,    note: "3/43 activas en D30–D60" },
+      { cohort: "Junio", cuentas: 49, m1: null,  m2: null, note: "incompleto · solo 17 días de julio al 17/07" },
+      { cohort: "Julio", cuentas: 36, m1: null,  m2: null, note: "Month 0 en curso" }
     ],
     retNote: "Retención rolling mensual (chart e8nmj9st) · Cohorte Mayo (43 ctas): M1=7.0% (3/43 activas en D30–D60) · M2=0% · Cohorte Junio (49 ctas): M1=0% — incompleto, solo 17 días de julio acumulados al 17/07 · Cohorte Julio (36 ctas): en Month 0.",
     modules: {
@@ -1417,6 +1428,7 @@ function render(date) {
   setText('kPql',      `~${d.amp.pql}`);
   setText('kRetD1',    d.amp.retD1);
   setText('kRetD1Sub', d.amp.retD1sub);
+  document.getElementById('kRetD1Label').textContent = d.amp.retD1Label || 'Retención D1';
 
   // Funnel label
   document.getElementById('funnelLabel').textContent = `Funnel de conversión — acumulado Beta al ${d.label}`;
@@ -1458,10 +1470,35 @@ function render(date) {
   document.getElementById('scNotes').innerHTML = d.scNotes.map(n => `<div class="${n.cls}" style="margin-top:8px">${n.txt}</div>`).join('');
 
   // Retention
-  document.getElementById('retRow').innerHTML = d.retention.map(r => {
-    const cls = r.pct >= 20 ? 'high' : r.pct >= 10 ? 'mid' : r.pct > 0 ? 'low' : 'zero';
-    return `<div class="ret-cell"><span class="day">${r.day}</span><span class="pct ${cls}">${r.pct}%</span></div>`;
-  }).join('');
+  const monthly = d.amp.retMode === 'monthly';
+  document.getElementById('retSectionLabel').textContent = monthly
+    ? 'Retención mensual rolling — cohortes del Beta'
+    : 'Retención del cohort Beta — método N-day';
+  document.getElementById('retDesc').textContent = monthly
+    ? 'Retención rolling: % de cuentas VEN activas en cualquier punto del mes N tras su registro. Cohort: ac-account-created · return event: cualquier actividad.'
+    : 'Usuarios que volvieron al producto N días después de crear su cuenta. Cohort: ac-account-created · return event: cualquier actividad.';
+  if (monthly) {
+    document.getElementById('retRow').innerHTML = '<div class="ret-monthly">' +
+      d.retention.map(r => {
+        const m1cls = r.m1 === null ? 'nd' : r.m1 >= 15 ? 'high' : r.m1 >= 5 ? 'pos' : 'zero';
+        const m2cls = r.m2 === null ? 'nd' : r.m2 >= 15 ? 'high' : r.m2 >= 5 ? 'pos' : 'zero';
+        const m1v = r.m1 === null ? '—' : r.m1 + '%';
+        const m2v = r.m2 === null ? '—' : r.m2 + '%';
+        return `<div class="ret-m-row">
+          <span class="ret-m-name">Cohorte ${r.cohort}</span>
+          <span class="ret-m-count">${r.cuentas} ctas.</span>
+          <div class="ret-m-cell"><span class="ret-m-lbl">M1 (D30)</span><span class="ret-m-val ${m1cls}">${m1v}</span></div>
+          <div class="ret-m-cell"><span class="ret-m-lbl">M2 (D60)</span><span class="ret-m-val ${m2cls}">${m2v}</span></div>
+          ${r.note ? `<span style="font-size:10px;color:#b5b3ae;flex:1">${r.note}</span>` : ''}
+        </div>`;
+      }).join('') + '</div>';
+  } else {
+    document.getElementById('retRow').innerHTML = '<div class="ret-row">' +
+      d.retention.map(r => {
+        const cls = r.pct >= 20 ? 'high' : r.pct >= 10 ? 'mid' : r.pct > 0 ? 'low' : 'zero';
+        return `<div class="ret-cell"><span class="day">${r.day}</span><span class="pct ${cls}">${r.pct}%</span></div>`;
+      }).join('') + '</div>';
+  }
   document.getElementById('retNote').textContent = d.retNote;
 
   // Modules chart
