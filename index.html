@@ -1260,12 +1260,12 @@ const SNAPSHOTS = {
       ]
     },
     dailyAccounts: {
-      labels: ["19/05","20/05","21/05","22/05","23/05","24/05","25/05","26/05","27/05","28/05","29/05","30/05","31/05","01/06","02/06","03/06","04/06","05/06","06/06","07/06","08/06","09/06","10/06","11/06","12/06","13/06","14/06","15/06","16/06","17/06","18/06"],
-      data:   [3,2,9,7,6,1,5,0,0,2,3,1,2,5,0,3,4,1,4,0,2,3,3,1,0,1,4,2,0,0,2]
+      labels: ["19/05","26/05","02/06","09/06","16/06"],
+      data:   [33, 13, 14, 14, 2]
     },
     dailyClics: {
-      labels: ["19/05","20/05","21/05","22/05","23/05","24/05","25/05","26/05","27/05","28/05","29/05","30/05","31/05","01/06","02/06","03/06","04/06","05/06","06/06","07/06","08/06","09/06","10/06","11/06","12/06","13/06","14/06","15/06","16/06","17/06","18/06"],
-      data:   [6,12,31,27,11,11,16,27,25,37,25,9,8,18,31,34,29,22,15,9,18,26,30,25,25,11,5,25,28,34,32]
+      labels: ["19/05","26/05","02/06","09/06","16/06"],
+      data:   [114, 149, 158, 147, 94]
     },
     dailyNotes: [
       { cls: "good-note",    txt: "✅ Mes 1 cerrado: 31 días · 77 cuentas · 53 PQL VEN" },
@@ -1336,12 +1336,12 @@ const SNAPSHOTS = {
       ]
     },
     dailyAccounts: {
-      labels: ["19/05","20/05","21/05","22/05","23/05","24/05","25/05","26/05","27/05","28/05","29/05","30/05","31/05","01/06","02/06","03/06","04/06","05/06","06/06","07/06","08/06","09/06","10/06","11/06","12/06","13/06","14/06","15/06","16/06","17/06","18/06","19/06","20/06","21/06","22/06","23/06","24/06","25/06","26/06","27/06","28/06","29/06","30/06","01/07","02/07","03/07","04/07","05/07","06/07","07/07","08/07","09/07","10/07","11/07","12/07","13/07","14/07","15/07","16/07","17/07"],
-      data:   [3,2,9,7,6,1,5,0,0,2,3,1,2,5,0,3,4,1,4,0,2,3,3,1,0,1,4,2,0,0,2,1,1,0,5,0,3,0,1,0,0,1,2,2,4,3,4,2,1,2,5,4,3,1,1,1,1,1,1,0]
+      labels: ["19/05","26/05","02/06","09/06","16/06","23/06","30/06","07/07","14/07"],
+      data:   [33, 13, 14, 14, 9, 5, 18, 17, 3]
     },
     dailyClics: {
-      labels: ["19/05","20/05","21/05","22/05","23/05","24/05","25/05","26/05","27/05","28/05","29/05","30/05","31/05","01/06","02/06","03/06","04/06","05/06","06/06","07/06","08/06","09/06","10/06","11/06","12/06","13/06","14/06","15/06","16/06","17/06","18/06","19/06","20/06","21/06","22/06","23/06","24/06","25/06","26/06","27/06","28/06","29/06","30/06","01/07","02/07","03/07","04/07","05/07","06/07","07/07","08/07","09/07","10/07","11/07","12/07","13/07","14/07","15/07","16/07","17/07"],
-      data:   [6,12,31,27,11,11,16,27,25,37,25,9,8,18,31,34,29,22,15,9,18,26,30,25,25,11,5,25,28,34,32,30,15,3,36,24,20,9,14,7,4,23,19,25,21,32,10,5,32,35,24,28,33,7,7,28,38,26,30,3]
+      labels: ["19/05","26/05","02/06","09/06","16/06","23/06","30/06","07/07","14/07"],
+      data:   [114, 149, 158, 147, 178, 101, 144, 162, 97]
     },
     dailyNotes: [
       { cls: "good-note",    txt: "✅ 60 días de beta: 128 cuentas · 92 PQL VEN · Pico 21/05 (9 cuentas) y 22/06 (5 cuentas)" },
@@ -1451,20 +1451,9 @@ function render(date) {
 
   // Daily / weekly accounts chart
   const weekly = d.chartInterval === 'weekly';
-  function toWeekly(labels, data) {
-    const wL = [], wD = [];
-    for (let i = 0; i < data.length; i += 7) {
-      const chunk = data.slice(i, i + 7);
-      wL.push(labels[i]);
-      wD.push(chunk.reduce((a, b) => a + b, 0));
-    }
-    return { labels: wL, data: wD };
-  }
-  const dcRaw = d.dailyAccounts;
-  const dcAgg = weekly ? toWeekly(dcRaw.labels, dcRaw.data) : dcRaw;
   const dc = charts.daily;
-  dc.data.labels = dcAgg.labels;
-  const daData = dcAgg.data;
+  dc.data.labels = d.dailyAccounts.labels;
+  const daData = d.dailyAccounts.data;
   dc.data.datasets[0].data = daData;
   dc.data.datasets[0].backgroundColor = weekly
     ? daData.map(() => 'rgba(51,102,173,0.60)')
@@ -1478,16 +1467,15 @@ function render(date) {
 
   // SC daily / weekly chart
   const sc = charts.scDaily;
-  const scRaw = d.dailyClics;
-  const scAgg = weekly ? toWeekly(scRaw.labels, scRaw.data) : scRaw;
-  sc.data.labels = scAgg.labels;
-  sc.data.datasets[0].data = scAgg.data;
+  sc.data.labels = d.dailyClics.labels;
+  const scData = d.dailyClics.data;
+  sc.data.datasets[0].data = scData;
   sc.data.datasets[0].backgroundColor = weekly
-    ? scAgg.data.map(() => 'rgba(29,158,117,0.65)')
-    : scAgg.data.map(v => v >= 30 ? 'rgba(29,158,117,0.70)' : 'rgba(51,102,173,0.55)');
+    ? scData.map(() => 'rgba(29,158,117,0.65)')
+    : scData.map(v => v >= 30 ? 'rgba(29,158,117,0.70)' : 'rgba(51,102,173,0.55)');
   sc.data.datasets[0].borderColor = weekly
-    ? scAgg.data.map(() => green)
-    : scAgg.data.map(v => v >= 30 ? green : blue);
+    ? scData.map(() => green)
+    : scData.map(v => v >= 30 ? green : blue);
   sc.update('none');
   document.getElementById('scSectionLabel').textContent = weekly ? 'Clics landing por semana — Search Console' : 'Clics landing por día — Search Console';
   document.getElementById('scNotes').innerHTML = d.scNotes.map(n => `<div class="${n.cls}" style="margin-top:8px">${n.txt}</div>`).join('');
