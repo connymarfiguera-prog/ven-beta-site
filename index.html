@@ -1228,7 +1228,7 @@ const SNAPSHOTS = {
   "2026-06-18": {
     label: "18 Jun 2026 · Mes 1", betaDay: 31,
     sc: { clics: 662, imp: 2508, ctr: "26.4%", pos: "2.3", period: "19/05–18/06", queries: 134, marcaPct: 74 },
-    amp: { cuentas: 77, onbIniciado: 61, mql: 154, pql: 53, retD1: "—", retD1sub: "Vista mensual · Mes 1 Beta (19/05–18/06)" },
+    amp: { cuentas: 77, onbIniciado: 61, mql: 154, pql: 53, retD1: "7.0%", retD1sub: "Ret. rolling M1 · cohorte Mayo · 3/43 cuentas activas en D30–D60" },
     cuentasSub: "77 cuentas VEN · Mes 1 completo (31 días)",
     funnel: {
       labels: ["SC Clics","CTA únicos","Cuentas","ONB iniciado","MQL","PQL VEN"],
@@ -1263,12 +1263,11 @@ const SNAPSHOTS = {
       { cls: "good-note", txt: "🔝 Mes 1 SC: 662 clics · CTR 26.4% · pos. 2.3 · MarcaPct 74% (488/662 clics 'alegra')" }
     ],
     retention: [
-      { day:"D1", pct:0 },    { day:"D2", pct:18.3 }, { day:"D3", pct:6.7 },
-      { day:"D4", pct:3.3 },  { day:"D5", pct:16.7 }, { day:"D6", pct:6.7 },
-      { day:"D7", pct:0 },    { day:"D8", pct:0 },    { day:"D9", pct:16.7 },
-      { day:"D10", pct:3.3 }, { day:"D11", pct:0 },   { day:"D12", pct:0 }
+      { day:"M1 May", pct: 7.0 },
+      { day:"M1 Jun", pct: 0 },
+      { day:"M2 May", pct: 0 }
     ],
-    retNote: "Datos de retención al cierre del Mes 1. Cohortes de mayo consolidadas; las de junio siguen en maduración.",
+    retNote: "Retención rolling mensual (chart e8nmj9st) · Cohorte Mayo (43 ctas): M1 = 7.0% — 3 cuentas activas en D30–D60 (dato retroactivo al 17/07) · Cohorte Jun 1–18 (35 ctas): M1 aún no alcanzó D30 al cierre del Mes 1.",
     modules: {
       labels: ["Contactos","Ítems","Bancos","Facturas","Gastos","Cotizaciones"],
       data:   [45, 42, 15, 27, 13, 8]
@@ -1306,7 +1305,7 @@ const SNAPSHOTS = {
   "2026-07-17": {
     label: "17 Jul 2026 · Mes 2 (acum.)", betaDay: 60,
     sc: { clics: 1250, imp: 4952, ctr: "25.2%", pos: "2.4", period: "19/05–17/07", queries: 226, marcaPct: 73 },
-    amp: { cuentas: 128, onbIniciado: 105, mql: 282, pql: 92, retD1: "—", retD1sub: "Acumulado Beta completo · 19/05–17/07 · Jul 15–17 puede actualizar" },
+    amp: { cuentas: 128, onbIniciado: 105, mql: 282, pql: 92, retD1: "7.0%", retD1sub: "Ret. rolling M1 · cohorte Mayo (3/43) · Jun 49 ctas incompleto al 17/07" },
     cuentasSub: "128 cuentas VEN · 60 días de beta (19/05–17/07)",
     funnel: {
       labels: ["SC Clics","CTA únicos","Cuentas","ONB iniciado","MQL","PQL VEN"],
@@ -1342,12 +1341,11 @@ const SNAPSHOTS = {
       { cls: "good-note",    txt: "📈 1.250 clics totales · 4.952 imp · MarcaPct 73% (909/1.250 clics 'alegra') · 226 queries" }
     ],
     retention: [
-      { day:"D1", pct:0 },  { day:"D2", pct:0 }, { day:"D3", pct:0 },
-      { day:"D4", pct:0 },  { day:"D5", pct:0 }, { day:"D6", pct:0 },
-      { day:"D7", pct:0 },  { day:"D8", pct:0 }, { day:"D9", pct:0 },
-      { day:"D10", pct:0 }, { day:"D11", pct:0 },{ day:"D12", pct:0 }
+      { day:"M1 May", pct: 7.0 },
+      { day:"M2 May", pct: 0 },
+      { day:"M1 Jun", pct: 0 }
     ],
-    retNote: "Retención acumulada no calculada en este snapshot mensual. Análisis de cohortes completas disponible en Amplitude.",
+    retNote: "Retención rolling mensual (chart e8nmj9st) · Cohorte Mayo (43 ctas): M1=7.0% (3/43 activas en D30–D60) · M2=0% · Cohorte Junio (49 ctas): M1=0% — incompleto, solo 17 días de julio acumulados al 17/07 · Cohorte Julio (36 ctas): en Month 0.",
     modules: {
       labels: ["Contactos","Ítems","Bancos","Facturas","Gastos","Cotizaciones"],
       data:   [78, 73, 26, 47, 23, 14]
