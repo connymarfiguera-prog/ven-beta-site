@@ -155,14 +155,14 @@
 <!-- DAILY CHARTS -->
 <div class="two-col" style="margin-top:10px">
   <div>
-    <div class="section-label">Registros por día — Amplitude</div>
+    <div class="section-label" id="dailySectionLabel">Registros por día — Amplitude</div>
     <div class="card" style="padding-bottom:14px">
       <div style="position:relative;width:100%;height:190px"><canvas id="dailyChart"></canvas></div>
       <div id="dailyNotes"></div>
     </div>
   </div>
   <div>
-    <div class="section-label">Clics landing por día — Search Console</div>
+    <div class="section-label" id="scSectionLabel">Clics landing por día — Search Console</div>
     <div class="card" style="padding-bottom:14px">
       <div style="position:relative;width:100%;height:190px"><canvas id="scChart"></canvas></div>
       <div id="scNotes"></div>
@@ -1238,7 +1238,7 @@ const SNAPSHOTS = {
   },
 
   "2026-06-18": {
-    label: "18 Jun 2026 · Mes 1", betaDay: 31,
+    label: "18 Jun 2026 · Mes 1", betaDay: 31, chartInterval: "weekly",
     sc: { clics: 662, imp: 2508, ctr: "26.4%", pos: "2.3", period: "19/05–18/06", queries: 134, marcaPct: 74 },
     amp: { cuentas: 77, onbIniciado: 61, mql: 154, pql: 53, retD1: "7.0%", retD1Label: "Retención M1", retD1sub: "Mayo: 3/43 cuentas · rolling D30–D60", retMode: "monthly" },
     cuentasSub: "77 cuentas VEN · Mes 1 completo (31 días)",
@@ -1314,7 +1314,7 @@ const SNAPSHOTS = {
   },
 
   "2026-07-17": {
-    label: "17 Jul 2026 · Mes 2 (acum.)", betaDay: 60,
+    label: "17 Jul 2026 · Mes 2 (acum.)", betaDay: 60, chartInterval: "weekly",
     sc: { clics: 1250, imp: 4952, ctr: "25.2%", pos: "2.4", period: "19/05–17/07", queries: 226, marcaPct: 73 },
     amp: { cuentas: 128, onbIniciado: 105, mql: 282, pql: 92, retD1: "7.0%", retD1Label: "Retención M1", retD1sub: "Mayo: 3/43 cuentas · Junio: pendiente agosto", retMode: "monthly" },
     cuentasSub: "128 cuentas VEN · 60 días de beta (19/05–17/07)",
@@ -1449,24 +1449,47 @@ function render(date) {
   fc.data.datasets[0].borderColor = funnelBorder.slice(0, d.funnel.vals.length);
   fc.update('none');
 
-  // Daily accounts chart
+  // Daily / weekly accounts chart
+  const weekly = d.chartInterval === 'weekly';
+  function toWeekly(labels, data) {
+    const wL = [], wD = [];
+    for (let i = 0; i < data.length; i += 7) {
+      const chunk = data.slice(i, i + 7);
+      wL.push(labels[i]);
+      wD.push(chunk.reduce((a, b) => a + b, 0));
+    }
+    return { labels: wL, data: wD };
+  }
+  const dcRaw = d.dailyAccounts;
+  const dcAgg = weekly ? toWeekly(dcRaw.labels, dcRaw.data) : dcRaw;
   const dc = charts.daily;
-  dc.data.labels = d.dailyAccounts.labels;
-  const daData = d.dailyAccounts.data;
+  dc.data.labels = dcAgg.labels;
+  const daData = dcAgg.data;
   dc.data.datasets[0].data = daData;
-  dc.data.datasets[0].backgroundColor = daData.map(v => v === 0 ? 'rgba(226,75,74,0.35)' : 'rgba(51,102,173,0.60)');
-  dc.data.datasets[0].borderColor      = daData.map(v => v === 0 ? red : blue);
+  dc.data.datasets[0].backgroundColor = weekly
+    ? daData.map(() => 'rgba(51,102,173,0.60)')
+    : daData.map(v => v === 0 ? 'rgba(226,75,74,0.35)' : 'rgba(51,102,173,0.60)');
+  dc.data.datasets[0].borderColor = weekly
+    ? daData.map(() => blue)
+    : daData.map(v => v === 0 ? red : blue);
   dc.update('none');
+  document.getElementById('dailySectionLabel').textContent = weekly ? 'Registros por semana — Amplitude' : 'Registros por día — Amplitude';
   document.getElementById('dailyNotes').innerHTML = d.dailyNotes.map(n => `<div class="${n.cls}" style="margin-top:8px">${n.txt}</div>`).join('');
 
-  // SC daily chart
+  // SC daily / weekly chart
   const sc = charts.scDaily;
-  const scD = d.dailyClics;
-  sc.data.labels = scD.labels;
-  sc.data.datasets[0].data = scD.data;
-  sc.data.datasets[0].backgroundColor = scD.data.map(v => v >= 30 ? 'rgba(29,158,117,0.70)' : 'rgba(51,102,173,0.55)');
-  sc.data.datasets[0].borderColor      = scD.data.map(v => v >= 30 ? green : blue);
+  const scRaw = d.dailyClics;
+  const scAgg = weekly ? toWeekly(scRaw.labels, scRaw.data) : scRaw;
+  sc.data.labels = scAgg.labels;
+  sc.data.datasets[0].data = scAgg.data;
+  sc.data.datasets[0].backgroundColor = weekly
+    ? scAgg.data.map(() => 'rgba(29,158,117,0.65)')
+    : scAgg.data.map(v => v >= 30 ? 'rgba(29,158,117,0.70)' : 'rgba(51,102,173,0.55)');
+  sc.data.datasets[0].borderColor = weekly
+    ? scAgg.data.map(() => green)
+    : scAgg.data.map(v => v >= 30 ? green : blue);
   sc.update('none');
+  document.getElementById('scSectionLabel').textContent = weekly ? 'Clics landing por semana — Search Console' : 'Clics landing por día — Search Console';
   document.getElementById('scNotes').innerHTML = d.scNotes.map(n => `<div class="${n.cls}" style="margin-top:8px">${n.txt}</div>`).join('');
 
   // Retention
