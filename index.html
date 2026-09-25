@@ -140,8 +140,8 @@
   <div class="kpi"><div class="kpi-label">Clics landing</div><div class="kpi-val" id="kClics"></div><div class="kpi-sub good" id="kClicsSub"></div></div>
   <div class="kpi"><div class="kpi-label">Impresiones</div><div class="kpi-val" id="kImp"></div><div class="kpi-sub" id="kImpSub"></div></div>
   <div class="kpi"><div class="kpi-label">Cuentas VEN creadas</div><div class="kpi-val" id="kCuentas"></div><div class="kpi-sub" id="kCuentasSub"></div></div>
-  <div class="kpi"><div class="kpi-label">MQL (ONB completado)</div><div class="kpi-val" id="kMql"></div><div class="kpi-sub good">finished + finished-backend</div></div>
-  <div class="kpi"><div class="kpi-label">PQL VEN (≥1 evento valor)</div><div class="kpi-val" id="kPql"></div><div class="kpi-sub">contactos, ítems, cotizan…</div></div>
+  <div class="kpi"><div class="kpi-label" id="kMqlLabel">MQL (ONB completado)</div><div class="kpi-val" id="kMql"></div><div class="kpi-sub good" id="kMqlSub">finished + finished-backend</div></div>
+  <div class="kpi"><div class="kpi-label" id="kPqlLabel">PQL VEN (≥1 evento valor)</div><div class="kpi-val" id="kPql"></div><div class="kpi-sub" id="kPqlSub">contactos, ítems, facturas…</div></div>
   <div class="kpi"><div class="kpi-label" id="kRetD1Label">Retención D1</div><div class="kpi-val" id="kRetD1"></div><div class="kpi-sub" id="kRetD1Sub"></div></div>
 </div>
 
@@ -214,11 +214,12 @@
 <div class="insight-grid" id="insightsGrid"></div>
 <div class="alert" style="margin-top:10px">
   <p>📊 <strong>Cómo leer este dashboard</strong><br>
-  <strong>Contexto:</strong> las cuentas creadas en 2026 son gratis hasta el 30/06/2027 (recuperación económica post terremoto). Esto infla los registros desde agosto y posterga la medición de conversión a pago.<br>
+  <strong>Contexto:</strong> la Beta sigue abierta y sin costo. Los usuarios que se registren durante 2026 tendrán un plan gratuito hasta el 30/06/2027, como apoyo a la recuperación económica luego de los eventos sísmicos del país. Esto impulsa los registros desde agosto. El modelo comercial está en definición.<br>
   <strong>CTA:</strong> usuarios únicos de <code style="font-size:10px">cta-crear-cuenta</code> con <code style="font-size:10px">[Amplitude] Page Path ∋ /venezuela/</code>. No se filtra por appVersion porque el clic ocurre antes del registro. Parte de los registros no pasa por este CTA.<br>
   <strong>PQL VEN</strong> (métrica de este dashboard): usuarios con ≥1 evento de valor (contactos, ítems, cotizaciones, facturas, gastos, pagos). Definición acordada con David Sánchez el 04/06, porque en VEN no hay factura electrónica homologada por SENIAT.<br>
-  <strong>PQL oficial Alegra</strong> = <code style="font-size:10px">ac-invoice-submitted</code>: 118 usuarios al 24/09. Es el número comparable con el data-dashboard.<br>
-  <strong>Filtros en todas las consultas:</strong> <code style="font-size:10px">gp:appVersion</code> = VEN o venezuela · excluye @alegra.com · desde 19/05/2026. La diferencia de conteo con el data-dashboard oficial (cohort filter distinto) no se revisa desde junio.</p>
+  <strong>PQL oficial Alegra</strong> = <code style="font-size:10px">ac-invoice-submitted</code>: 118 usuarios VEN al 24/09. Es el número comparable con el data-dashboard.<br>
+  <strong>Dos universos:</strong> el funnel y la retención miden solo las cuentas creadas desde el 19/05 (441). "Usuarios VEN con uso real" (240) y la adopción por módulo incluyen también a usuarios VEN previos a la Beta.<br>
+  <strong>Filtros en todas las consultas:</strong> <code style="font-size:10px">gp:appVersion</code> = VEN o venezuela · excluye @alegra.com · desde 19/05/2026.</p>
 </div>
 
 <!-- FOOTER -->
@@ -1399,23 +1400,23 @@ const SNAPSHOTS = {
   "2026-09-24": {
     label: "24 Sep 2026 · Mes 4 (acum.)", betaDay: 129, chartInterval: "weekly",
     sc: { clics: 2953, imp: 13272, ctr: "22.3%", pos: "2.6", period: "19/05–24/09", queries: 495, marcaPct: 71 },
-    amp: { cuentas: 441, onbIniciado: 403, mql: 673, pql: 240, retD1: "8.6%", retD1Label: "Retención M1", retD1sub: "13/151 ctas · cohortes may–jul", retMode: "monthly" },
-    cuentasSub: "441 cuentas · 291 desde el 01/08 (66%)",
+    amp: { cuentas: 441, onbIniciado: 374, mql: 375, pql: 240, pqlExact: true, retD1: "8.6%", retD1Label: "Retención M1", retD1sub: "13/151 ctas · cohortes may–jul", retMode: "monthly",
+           mqlLabel: "Onboarding completado", mqlSub: "85% de las cuentas Beta",
+           pqlLabel: "Usuarios VEN con uso real", pqlSub: "149 de cuentas Beta + usuarios VEN previos" },
+    cuentasSub: "291 desde el 01/08 (66%)",
     funnel: {
-      labels: ["SC Clics","CTA únicos","Cuentas","ONB iniciado","MQL","PQL VEN"],
-      vals: [2953, 501, 441, 403, 673, 240],
+      labels: ["SC Clics","CTA únicos","Cuentas Beta","ONB completado","PQL (cuentas Beta)"],
+      vals: [2953, 501, 441, 375, 149],
       convs: [
         { n: 2953, lbl: "SC Clics" },
         { pct: "~17%",  clr: "#856404" },
         { n: 501,  lbl: "CTA únicos" },
-        { pct: "~88%*", clr: "#3266ad" },
-        { n: 441,  lbl: "Cuentas" },
-        { pct: "91.4%", clr: "#1D9E75" },
-        { n: 403,  lbl: "ONB iniciado" },
-        { pct: "acum.", clr: "#3266ad" },
-        { n: 673,  lbl: "MQL" },
-        { pct: "54% de ctas", clr: "#856404" },
-        { n: 240,  lbl: "PQL VEN" }
+        { pct: "*",     clr: "#3266ad" },
+        { n: 441,  lbl: "Cuentas Beta" },
+        { pct: "85%",   clr: "#1D9E75" },
+        { n: 375,  lbl: "ONB completado" },
+        { pct: "40%",   clr: "#856404" },
+        { n: 149,  lbl: "PQL cuentas Beta" }
       ]
     },
     dailyAccounts: {
@@ -1427,7 +1428,7 @@ const SNAPSHOTS = {
       data:   [87, 150, 157, 144, 169, 113, 134, 164, 175, 121, 169, 148, 140, 153, 216, 181, 213, 186, 133]
     },
     dailyNotes: [
-      { cls: "good-note",    txt: "📈 Salto desde la semana del 16/08: de ~13 a ~43 cuentas/semana · Ago = 132 · Sep (1–24) = 159 · causa probable: cuenta gratis hasta 30/06/2027" },
+      { cls: "good-note",    txt: "📈 Salto desde la semana del 16/08: de ~13 a ~43 cuentas/semana · Ago = 132 · Sep (1–24) = 159 · causa probable: plan gratuito hasta 30/06/2027 para registros de 2026" },
       { cls: "plateau-note", txt: "ℹ️ Semanas dom–sáb (Amplitude). Primera (19–23/05) y última (20–24/09) son parciales" }
     ],
     scNotes: [
@@ -1463,20 +1464,21 @@ const SNAPSHOTS = {
     convTable: [
       { stage: "Clics landing <code>/venezuela/*</code>", vol: "2.953 clics · 13.272 imp.", conv: "Base", convCls: "nd", src: "Search Console · 19/05–24/09 · 129 días · /venezuela/ 2.880 + /venezuela/contabilidad/ 73" },
       { stage: "CTA únicos <code>cta-crear-cuenta</code>", vol: "501 usuarios", conv: "~17% de visitas SC", convCls: "warn", src: "Amplitude · Page Path ∋ /venezuela/ · excl. @alegra.com · únicos 19/05–24/09" },
-      { stage: "Cuentas VEN creadas <code>ac-account-created</code>", vol: "441", conv: "~88% de CTA*", convCls: "nd", src: "Amplitude · user segment VEN · *no es la misma cohorte: desde agosto parte de los registros no pasa por el CTA" },
-      { stage: "Onboarding iniciado <code>ac-onboarding-started</code>", vol: "403", conv: "91.4%", convCls: "good", src: "Amplitude · user segment VEN · únicos 19/05–24/09" },
-      { stage: "MQL <code>ac-onboarding-finished + backend</code>", vol: "673", conv: "acum. 129 días", convCls: "nd", src: "Amplitude · únicos deduplicados · incluye usuarios que retomaron ONB" },
-      { stage: "PQL VEN — ≥1 evento de valor <small style=\"color:#9e9d98;font-size:10px\">(contactos, ítems, cotizaciones, bancos…)</small>", vol: "240", conv: "54% de cuentas · 36% de MQL", convCls: "warn", src: "Amplitude · únicos deduplicados · 19/05–24/09" }
+      { stage: "Cuentas VEN creadas en la Beta <code>ac-account-created</code>", vol: "441", conv: "no comparable*", convCls: "nd", src: "Amplitude · user segment VEN · *con el plan gratuito, parte de los registros llega directo al formulario sin pasar por el CTA de la landing" },
+      { stage: "Onboarding iniciado <code>ac-onboarding-started</code>", vol: "374", conv: "85% de cuentas", convCls: "good", src: "Amplitude · cuentas creadas desde el 19/05" },
+      { stage: "Onboarding completado <code>ac-onboarding-finished + backend</code>", vol: "375", conv: "85% de cuentas", convCls: "good", src: "Amplitude · cuentas creadas desde el 19/05 · casi todos los que inician lo completan" },
+      { stage: "PQL — ≥1 evento de valor <small style=\"color:#9e9d98;font-size:10px\">(contactos, ítems, facturas, gastos…)</small>", vol: "149", conv: "34% de cuentas", convCls: "warn", src: "Amplitude · cuentas creadas desde el 19/05 · el mayor abandono está entre terminar el onboarding y la primera acción de valor" },
+      { stage: "Usuarios VEN con uso real (total)", vol: "240", conv: "incluye previos", convCls: "nd", src: "Amplitude · 149 de cuentas Beta + usuarios VEN sin creación de cuenta registrada desde el 19/05 (cuentas anteriores o no trackeadas)" }
     ],
     insights: [
       { icon: "📈", title: "El volumen de registros se triplicó desde mediados de agosto", body: "Hasta el 15/08 entraban ~13 cuentas/semana. Desde la semana del 16/08 entran ~43. Agosto cerró con 132 cuentas y septiembre lleva 159 en 24 días, contra ~50/mes entre mayo y julio. El 66% del acumulado (291/441) se creó después del 01/08, y el 81% de las cuentas de septiembre tiene IP de Venezuela." },
-      { icon: "🎁", title: "Causa probable: cuenta gratis hasta el 30/06/2027", body: "Las cuentas creadas durante 2026 son gratis hasta el 30/06/2027, como estrategia de recuperación económica tras el terremoto. Coincide con el patrón: el salto viene de tráfico venezolano sin UTM o de google.com orgánico, no de Ads. Los clics en el CTA de la landing siguen en ~30/semana, y desde el 16/08 las cuentas semanales (38–54) superan a esos clics (23–42). <strong>Acción:</strong> confirmar por qué canal se difunde la oferta para poder atribuirla." },
-      { icon: "⚠️", title: "Conversión Cuenta→PQL baja de 72% a 54%", body: "240 PQL acumulados (vs 92 al 17/07), pero la cohorte nueva activa menos: 21–31 PQL por semana frente a 37–54 cuentas. Es lo esperable con una oferta gratuita, que atrae a usuarios con menor intención. El foco debería pasar de adquirir a activar: onboarding y primer evento de valor para este nuevo perfil." },
-      { icon: "🔄", title: "Retención: nadie llega a M3", body: "M1 de las cohortes completas: mayo 7.0%, junio 6.1%, julio 11.9% (la mejor). M2 entre 0% y 5%, y M3 en 0% para mayo y junio. Agosto muestra M1 de 3.0%, todavía preliminar. La retención de largo plazo sigue siendo el principal riesgo de la Beta." },
+      { icon: "🎁", title: "Causa probable: plan gratuito hasta el 30/06/2027", body: "Las cuentas que se registren durante 2026 tendrán un plan gratuito hasta el 30/06/2027, como apoyo a la recuperación económica luego de los eventos sísmicos del país. Coincide con el patrón: el salto viene de tráfico venezolano sin UTM o de google.com orgánico, no de Ads, y buena parte de los registros no pasa por el CTA de la landing." },
+      { icon: "🧭", title: "1 de cada 3 cuentas llega a uso real", body: "El 85% de las cuentas completa el onboarding, pero solo el 34% (149 de 441) hace después una acción de valor, como crear un contacto, un ítem o una factura. El mayor abandono está entre terminar el onboarding y empezar a usar el producto." },
+      { icon: "🔄", title: "Retención: todavía no se estabiliza", body: "M1 de las cohortes completas: mayo 7.0%, junio 6.1%, julio 11.9% (la mejor). M2 entre 0% y 5%, y M3 en 0% para mayo y junio. Incluso quienes hicieron una acción de valor vuelven poco (~10% al mes 1): el reto es el uso recurrente, no solo el primer uso." },
       { icon: "🔍", title: "2.953 clics SC · marca 71% · CTR 22.3%", body: "El 71% de los clics viene de la búsqueda exacta 'alegra'. Hay 495 queries únicas (vs 226 al 17/07). El 82% de los clics es desde ordenador. El CTR en móvil (10.7%) y en /venezuela/contabilidad/ (1.3% con 5.476 imp.) es la palanca de mejora SEO." },
-      { icon: "🎯", title: "240 PQL VEN · el cobro se mueve a julio 2027", body: "La meta original de 100 PQL ya se superó, pero con la gratuidad hasta el 30/06/2027 la conversión a pago no se medirá antes de esa fecha. Hasta entonces, la señal a seguir es el uso sostenido (retención M1–M3). Módulos más usados: Contactos (205), Ítems (188) y Facturas (118). Bancos (49), Gastos (37) y Cotizaciones (13) tienen baja adopción." }
+      { icon: "🎯", title: "Meta de 100 PQL superada · modelo comercial en definición", body: "Hay 240 usuarios VEN con uso real, por encima de la meta original de 100 PQL. Mientras el plan gratuito siga vigente, la señal a seguir es el uso recurrente (retención M1–M3). Módulos más usados: Contactos (205), Ítems (188) y Facturas (118). Bancos (49), Gastos (37) y Cotizaciones (13) tienen baja adopción." }
     ],
-    footer: "Amplitude · ProjectId 496026 · Cohort VEN: user segment gp:appVersion IS VEN/venezuela · excluye @alegra.com · Beta acumulado: 19/05–24/09/2026 (129 días) · semanas dom–sáb · Search Console /venezuela/* · país Venezuela · 2.953 clics · 13.272 imp · CTR 22.3% · pos. 2.6 · 495 queries · MQL = únicos ac-onboarding-finished + backend · PQL VEN = únicos con ≥1 evento de valor (ac-contact-created, ac-item-created, ac-estimate-created, ac-invoice-submitted, ac-bill-created, ac-transaction-in/out-created) · Bancos = ac-bank-created · Retención mensual N-day · Canales = gp:initial_utm_source."
+    footer: "Amplitude · ProjectId 496026 · Cohort VEN: user segment gp:appVersion IS VEN/venezuela · excluye @alegra.com · Beta acumulado: 19/05–24/09/2026 (129 días) · semanas dom–sáb · Search Console /venezuela/* · país Venezuela · 2.953 clics · 13.272 imp · CTR 22.3% · pos. 2.6 · 495 queries · Funnel = cuentas con ac-account-created desde el 19/05 · Onboarding completado = ac-onboarding-finished + backend · PQL = ≥1 evento de valor (ac-contact-created, ac-item-created, ac-estimate-created, ac-invoice-submitted, ac-bill-created, ac-transaction-in/out-created) · Usuarios VEN con uso real y módulos = todos los usuarios VEN, incluidos los previos a la Beta · Bancos = ac-bank-created · Retención mensual N-day · Canales = gp:initial_utm_source."
   }
 };
 
@@ -1506,14 +1508,18 @@ function render(date) {
   document.getElementById('hdrDate').textContent   = `Amplitude + SC ${d.sc.period} · actualizado ${d.label}`;
 
   // KPIs
-  setText('kClics',    d.sc.clics);
+  setText('kClics',    fmt(d.sc.clics));
   setText('kClicsSub', `CTR ${d.sc.ctr} · pos. ${d.sc.pos}`);
-  setText('kImp',      d.sc.imp);
+  setText('kImp',      fmt(d.sc.imp));
   setText('kImpSub',   `SC Beta · ${d.sc.period}`);
-  setText('kCuentas',  d.amp.cuentas);
+  setText('kCuentas',  fmt(d.amp.cuentas));
   setText('kCuentasSub', d.cuentasSub);
-  setText('kMql',      d.amp.mql);
-  setText('kPql',      `~${d.amp.pql}`);
+  setText('kMql',      fmt(d.amp.mql));
+  setText('kMqlLabel', d.amp.mqlLabel || 'MQL (ONB completado)');
+  setText('kMqlSub',   d.amp.mqlSub || 'finished + finished-backend');
+  setText('kPql',      d.amp.pqlExact ? fmt(d.amp.pql) : `~${d.amp.pql}`);
+  setText('kPqlLabel', d.amp.pqlLabel || 'PQL VEN (≥1 evento valor)');
+  setText('kPqlSub',   d.amp.pqlSub || 'contactos, ítems, facturas…');
   setText('kRetD1',    d.amp.retD1);
   setText('kRetD1Sub', d.amp.retD1sub);
   document.getElementById('kRetD1Label').textContent = d.amp.retD1Label || 'Retención D1';
@@ -1526,7 +1532,7 @@ function render(date) {
   document.getElementById('funnelConvs').innerHTML = convs.map(c =>
     c.pct
       ? `<div class="funnel-arrow">→ <span style="color:${c.clr};font-weight:600">${c.pct}</span></div>`
-      : `<div class="funnel-conv"><strong>${c.n}</strong><span>${c.lbl}</span></div>`
+      : `<div class="funnel-conv"><strong>${fmt(c.n)}</strong><span>${c.lbl}</span></div>`
   ).join('');
 
   // Funnel chart
@@ -1652,6 +1658,7 @@ function render(date) {
 }
 
 function setText(id, val) { document.getElementById(id).textContent = val; }
+function fmt(n) { return typeof n === 'number' ? String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.') : n; }
 
 // ══════════════════════════════════════
 // INIT
